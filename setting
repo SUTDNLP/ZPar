@@ -2,12 +2,16 @@
 #english postagger: collins(default)
 ENGLISH_TAGGER collins
 
-#english constituency parser: muhua(default), cad, cad-mvt, lin, miguel, srnew
+#english constituency parser: jiangming(default), muhua, cad, cad-mvt, lin, miguel, srnew
 ENGLISH_CONSTITUENCY_PARSER jiangming
 
 #english dependency parser: arceager(default), arcstandard, choi, choibasic
 # 							emnlp08, liu, morphparser, punct, uppsala
 ENGLISH_DEPENDENCY_PARSER arceager
+
+#english character-based dependency parser:	arceager(default), arcstandard, arcstandard-loc
+#											arcstandardfilter
+ENGLISH_POSDEPENDENCY_PARSER arceager
 
 #english dependency labeler: naive(default)
 ENGLISH_DEPENDENCY_LABELER naive
@@ -23,6 +27,10 @@ CHINESE_CONSTITUENCY_PARSER  acl13
 #chinese dependency parser: arceager(default), arceager-mvt, arceager-mvt-origin
 #							arcstandard, choi, choibasic, emnlp08, liu, uppsala
 CHINESE_DEPENDENCY_PARSER  arceager
+
+#chinese character-based dependency parser:	jcad, jcadeager
+#
+Chinese_POSDEPENDENCY_PARSER jcad
 
 #chinese dependency labeler: naive(default)
 CHINESE_DEPENDENCY_LABELER naive
