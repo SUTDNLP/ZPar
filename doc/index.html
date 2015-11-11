@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-responsive.min.css">
+
+<style type="text/css">
+.nav { }
+.nav li { float: left; width: 110px; }
+.container { background-color: #ffffff; padding: 30px; }
+.content { padding: 30px; }
+body, h1, h2, h3, h4 { font-family: "Trebuchet MS","Helvetica Neue",Arial,Helvetica,sans-serif,"Georgia";}
+body { background-color: #eeeeee; }
+header { width: 100%; }
+blockquote p { font-size: 14px; }
+</style>
+<title>ZPar | User Manual of ZPar</title>
+</head>
+
+<body>
+<div class="table-bordered container">
+<div class="content">
+
+<header>
+<div class="page-header text-center">
+<h1>User Manual of ZPar</h1>
+</div>
+</header>
+
+<h2><a id="Overview">Overview</a></h2>
+<p>
+ZPar is a statistical natural language parser,
+which performs syntactic analysis tasks including
+word segmentation,
+part-of-speech tagging and parsing.
+ZPar supports multiple languages and multiple grammar formalisms.
+ZPar has been most heavily developed for Chinese (on the Penn Chinese Treebank
+and Peking University Multiview Treebank)
+and English (on the Penn Treebank),
+while it provides generic support for other languages and treebanks.
+A Romanian model has been trained for ZPar 0.2, for example.
+ZPar currently supports context free grammars (CFG),
+dependency grammars and combinatory categorial grammars (CCG).
+</p>
+
+<h2><a id="System-Requirements">System Requirements</a></h2>
+<p>
+The ZPar software requires the following basic system configuration
+</p>
+
+<ul>
+<li>
+Windows, Linux or Mac
+</li>
+<li>
+GCC (for Linux and Mac) or MinGW (for Windows)
+</li>
+<li>
+256MB of RAM minimum (or larger depending on the modules used)
+</li>
+<li>
+At least 500MB of hard disk space (or larger depending on the modules used)
+</li>
+</ul>
+
+<h2><a id="Download-and-Installation">Download and Installation</a></h2>
+<p>
+Binaries and sourrces of the latest release can be downloaded from
+<a href="http://sourceforge.net/projects/zpar/">sourceforge</a>.
+ZPar provides functionalities for different languages and treebanks, such as
+<code>zpar</code>,
+<code>zpar.en</code>,
+<code>zpar.zh</code>, and
+<code>zpar.mvt</code>
+for generic language,
+English Penn Treebank,
+Chinese Penn Treebank,
+and Chinese multiview treebank,
+respectively.
+Source codes and binaries are provided for Windows, Linux and Mac.
+Standalone sub-modules can be built for individual tasks,
+such as
+<code>segmentor</code>,
+<code>postagger</code>,
+<code>conparser</code>, and
+<code>depparser</code>
+for word segmentation,
+POS-tagging,
+phrase-structure parsing,
+and dependency parsing.
+</p>
+
+<h2><a id="qs">Quick Start</a></h2>
+<p>
+ZPar can be used off the shelf by referring to the
+<a href="doc/qs.html">quick start</a>;
+Sub-modules such as
+the word segmentor, POS-tagger and parsers
+can also be used by following the detailed instructions for
+the compilation, training, and usage of individual modules.
+</p>
+
+<h2><a id="list">List of Manuals</a></h2>
+<ul>
+<li>
+ <a href="doc/qs.html">Quick Start</a>
+</li>
+<li>
+ <a href="doc/source_structure.html">Introduction to the ZPar source structure</a>
+</li>
+<li>
+ <a href="doc/build_system.html">Introduction to the ZPar build system</a>
+</li>
+<li>
+ <a href="doc/multiview.html">ZPar for the multiview Chinese Treebank</a>
+</li>
+<li>
+ <a href="doc/segmentor.html">Chinese word segmentation</a>
+</li>
+<li>
+ <a href="doc/joint_seg_tag.html">Chinese joint segmentation and POS tagging</a>
+</li>
+<li>
+ <a href="doc/eng_tagger.html">English POS tagging</a>
+</li>
+<li>
+ <a href="doc/tweb_tagger.html">ZPar support for the TWeb tagger</a>
+</li>
+<li>
+ <a href="doc/deppar.html">Chinese and English dependency parsing</a>
+</li>
+<li>
+  <a href="doc/conparser.html">Chinese and English phrase-structure parsing</a>
+</li>
+<li>
+ <a href="doc/independent.html">Language- and Treebank-independent parsers</a>
+</li>
+<li>
+ <a href="doc/ccg.html">CCG parsing</a>
+</li>
+</ul>
+
+<h2><a id="License">License</a></h2>
+
+<p>
+The software source is under GPL (v.3), and a separate commercial license
+issued by Oxford University for non-opensource. Various models available for
+download were trained from different text resources, which may require further
+licenses.
+</p>
+
+<h2><a id="contributers">Contributers to the Documentation</a></h2>
+<ul>
+<li>
+Yue Zhang <a href="mailto:frcchang@gmail.com">(Email)</a>
+</li>
+<li>
+Muhua Zhu <a href="mailto:zhumuhua@gmail.com">(Email)</a>
+</li>
+<li>
+Zhongye Jia <a href="mailto:jia.zhongye@gmail.com">(Email)</a>
+</li>
+</ul>
+
+<h2><a id="reference">Reference</a></h2>
+<ul>
+<li>
+Yue Zhang and Stephen Clark. 2011. Syntactic Processing Using the Generalized Perceptron and Beam Search. <em>Computational Linguistics</em>, 37(1):105-151.
+</li>
+</ul>
+</div>
+</div>
+<footer class="text-center">
+<p>
+ZPar Release 0.7
+</p>
+</footer>
+</body>
+</html>

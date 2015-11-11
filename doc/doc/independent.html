@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-responsive.min.css">
+
+<style type="text/css">
+.nav { }
+.nav li { float: left; width: 110px; }
+.container { background-color: #ffffff; padding: 30px; }
+.content { padding: 30px; }
+body, h1, h2, h3, h4 { font-family: "Trebuchet MS","Helvetica Neue",Arial,Helvetica,sans-serif,"Georgia";}
+body { background-color: #eeeeee; }
+header { width: 100%; }
+blockquote p { font-size: 14px; }
+</style>
+<title>ZPar | Language- and Treebank-Independent Parsers</title>
+</head>
+
+<body>
+<div class="table-bordered container">
+<div class="content">
+
+<header>
+<div class="page-header text-center">
+<h1>Language- and Treebank-Independent Parsers</h1>
+</div>
+</header>
+
+<h2><a id="Introduction">Introduction</a></h2>
+<p>
+The Chinese and English parsers are specifically designed to process the two languages, and by default use the <a href="http://www.cis.upenn.edu/~chinese/">Penn Chinese Treebank</a> and <a href="http://www.cis.upenn.edu/~treebank/">Penn Treebank</a> labels. You can specify alternative label sets by modifying <code>zpar/src/chinese/tags.h</code> for POS tags, <code>zpar/src/chinese/dep.h</code> for dependency labels, and <code>zpar/src/chinese/cfg.h</code> for constituent labels. These are hard-coded; the English version are placed in <code>zpar/src/english</code>.
+</p>
+<p>
+On the other hand, you can compile a <code>generic</code> version of ZPar, which takes any tags in the training data, and compile them into tag sets automatically. The speed of the generic tag sets are slower when compared with the hard-coded tag sets. The files are placed in <code>zpar/src/generic</code>.
+</p>
+<p>
+To compile individual models with these tags, use <code>generic</code> in the place of <code>chinese</code> or <code>english</code>. For example, <code>make generic.conparser</code>. The implementations are found from <code>src/common/GENERIC_CONPARSER_IMPL</code>. The generic ZPar can be compiled by <code>make zpar.ge</code>. 
+</p>
+<p>
+The generic parsers are used by different languages and treebank formats, for example, the generic depparser can be used to process CoNLL data in 13 languages.
+</p>
+
+<h2><a id="generic-zpar">The generic ZPar</a></h2>
+<p>
+Since ZPar 0.7, the generic ZPar system is the default ZPar.
+Type <code>make zpar</code> to compile.
+Usage of the generic system can be found in the <a href="qs.html">Quick Start Manual</a>.
+</p>
+
+<h2><a id="generic-POS-tagger">The generic POS-tagger</a></h2>
+<p>
+The structure of the generic POS-tagger is comsistent with
+the code of the <a href="eng_tagger.html">english POS-tagger</a>,
+with the differences been mentioned in <a href="#Introduction">Introduction</a>.
+</p>
+
+<h2><a id="generic-dependency-parser">The generic dependency parser</a></h2>
+<p>
+The structure of the generic dependency parser is comsistent with
+the code of the <a href="deppar.html">english dependency parser</a>,
+with the differences been mentioned in <a href="#Introduction">Introduction</a>.
+</p>
+
+<h2><a id="generic-constituent-parser">The generic constituent parser</a></h2>
+<p>
+The structure of the generic constituent parser is comsistent with
+the code of the <a href="conparser.html">english constituent parser</a>,
+with the differences been mentioned in <a href="#Introduction">Introduction</a>.
+</p>
+</div>
+</div>
+<footer class="text-center">
+<p>
+ZPar Release 0.7
+</p>
+</footer>
+</body>
+</html>

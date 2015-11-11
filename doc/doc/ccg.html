@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-responsive.min.css">
+
+<style type="text/css">
+.nav { }
+.nav li { float: left; width: 110px; }
+.container { background-color: #ffffff; padding: 30px; }
+.content { padding: 30px; }
+body, h1, h2, h3, h4 { font-family: "Trebuchet MS","Helvetica Neue",Arial,Helvetica,sans-serif,"Georgia";}
+body { background-color: #eeeeee; }
+header { width: 100%; }
+blockquote p { font-size: 14px; }
+</style>
+<title>ZPar | CCG Parsing</title>
+</head>
+
+<body>
+<div class="table-bordered container">
+<div class="content">
+
+<header>
+<div class="page-header text-center">
+<h1>CCG Parsing</h1>
+</div>
+</header>
+
+<h2><a id="Introduction">Introduction</a></h2>
+<p>
+The ZPar CCG parser is essentially the ZPar <a href="independent.html">generic version</a> of the phrase-structure parser with special processing of lexical categories and combinatorial rules (including unary rules). The source code are located at <code>zpar/src/common/conparser/GENERIC_CCGPARSER_IMPL</code>. The implementation macro is located at <code>zpar/Makefile.ccg</code>.
+</p>
+<p>
+To compile the parser, type <code>make generic.ccgparser</code>. The target binary <code>zpar/dist/generic.ccgparser/train</code> takes three additional arguments compared to the phrase-structure parsers.
+</p>
+<ul>
+<li>
+<code>-b</code> binary rules (<a href="ccg_files/rules.binary">example</a>)
+</li>
+<li>
+<code>-u</code> unary rules (<a href="ccg_files/rules.unary">example</a>)
+</li>
+<li>
+<code>-c</code> lexical category files (<a href="ccg_files/train.input">example</a>)
+</li>
+</ul>
+
+<p>
+Usage of the target binary <code>zpar/dist/generic.ccgparser/conparser</code> is similar to the English phrase-structure parser, except that the input file contains lexical categories in addition to POS (<a href="ccg_files/input.txt">an example</a>). 
+</p>
+
+<p>
+The output files are binarized derivations, in the same format as conparser. Here are <a href="ccg_files/train.txt">an example training file</a> and <a href="ccg_files/reference.txt">an example reference file</a>. 
+</p>
+
+<p>
+The CCG parser is tuned in a similar way to the conparser, where a certain number of training iterations are performed and the best iteration is decided using a set of development data. Here is <a href="ccg_files/test.sh">an example script</a> for tuning experiments. Note that the <a href="http://svn.ask.it.usyd.edu.au/trac/candc/wiki">C&amp;C</a> parser is used to convert derivations to CCG dependencies, which are the normal objectives of evaluations.
+</p>
+<h2><a id="reference">Reference</a></h2>
+
+<ul>
+<li>
+Yue Zhang and Stephen Clark. 2011. Shift-Reduce CCG Parsing. In <em>Proc. of ACL</em>, pages 683-692.
+</li>
+</ul>
+</div>
+</div>
+<footer class="text-center">
+<p>
+ZPar Release 0.7
+</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+#==================================
+#english postagger: collins(default)
+ENGLISH_TAGGER collins
+
+#english constituency parser: muhua(default), cad, cad-mvt, lin, miguel, srnew
+ENGLISH_CONSTITUENCY_PARSER jiangming
+
+#english dependency parser: arceager(default), arcstandard, choi, choibasic
+# 							emnlp08, liu, morphparser, punct, uppsala
+ENGLISH_DEPENDENCY_PARSER arceager
+
+#english dependency labeler: naive(default)
+ENGLISH_DEPENDENCY_LABELER naive
+
+ENGLISH_STANFORD_CONVERTER jiangming_convert
+#===================================
+#chinese postagger: agenda(default), agenda_mvt,segmented
+CHINESE_TAGGER agenda
+
+#chinese constituency parser: acl13(default), jcad
+CHINESE_CONSTITUENCY_PARSER  acl13
+
+#chinese dependency parser: arceager(default), arceager-mvt, arceager-mvt-origin
+#							arcstandard, choi, choibasic, emnlp08, liu, uppsala
+CHINESE_DEPENDENCY_PARSER  arceager
+
+#chinese dependency labeler: naive(default)
+CHINESE_DEPENDENCY_LABELER naive
+#

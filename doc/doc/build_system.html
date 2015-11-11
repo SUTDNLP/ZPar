@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-responsive.min.css">
+
+<style type="text/css">
+.nav { }
+.nav li { float: left; width: 110px; }
+.container { background-color: #ffffff; padding: 30px; }
+.content { padding: 30px; }
+body, h1, h2, h3, h4 { font-family: "Trebuchet MS","Helvetica Neue",Arial,Helvetica,sans-serif,"Georgia";}
+body { background-color: #eeeeee; }
+header { width: 100%; }
+blockquote p { font-size: 14px; }
+</style>
+<title>ZPar | Introduction to the ZPar build system</title>
+</head>
+
+<body>
+<div class="table-bordered container">
+<div class="content">
+
+<header>
+<div class="page-header text-center">
+<h1>Introduction to the ZPar build system</h1>
+</div>
+</header>
+
+<div class="alert alert-danger" role="alert">
+<p>
+Note:
+This documentation is written for ZPar 0.7 and above.
+</p>
+</div>
+
+<h2><a id="sec:overview">Overview</a></h2>
+<p>
+ZPar is built using the <a href="http://www.gnu.org/software/make/">make</a> build system
+by providing a set of predefined rules and compilation actions.
+You may easily customize ZPar or contribute third-party code
+by adapting the Makefiles.
+</p>
+
+<h2><a id="How-to-compile-ZPar-using-default-implementations">How to compile ZPar using default implementations</a></h2>
+<p>
+Suppose that ZPar has been downloaded to the directory <code>zpar</code>.
+To make a POS tagging system for English,
+type <code>make english.postagger</code>.
+This will create a directory <code>zpar/dist/english.postagger</code>,
+in which there are two files: <code>train</code> and <code>tagger</code>.
+The file <code>train</code> is used to train a tagging model,
+and the file <code>tagger</code> is used to tag new texts using a trained parsing model.
+</p>
+
+<p>
+Parsers and POS taggers for other languages can be built in similar ways.
+Please refer to specific manuals for detailed instructions.
+</p>
+
+<h2><a id="sec:how-change-impl">How to change the implementation for an existing task</a></h2>
+
+<p>
+ZPar provides various implementations for parsers and POS taggers for all the supported languages.
+To choose a specific implementation
+from existing ones provided by ZPar,
+simply edit <code>zpar/Makefile</code>
+and change the corresponding <code>*_IMPL</code> macro
+where <code>*</code> represents <code><code>&lt;LANGUAGE&gt;_&lt;TASK&gt;</code></code>.
+For example, to use the `Tweb' implementation
+of the POS tagger for generic language,
+make the following change to the <code>zpar/Makefile</code>:
+</p>
+<pre><code>GENERIC_TAGGER_IMPL = tweb
+</code></pre>
+
+<p>
+Then build the generic POS tagger as usual by typing <code>make generic.postagger</code>.
+</p>
+
+<p>
+To examine which implementations are supported for a specific task,
+please consult the sub-folders under:
+</p>
+<pre><code>par/src/&lt;LANGUAGE&gt;/&lt;TASK&gt;/implementations/
+</code></pre>
+
+<p>
+For example, the supported Chinese word segmentors are,
+</p>
+<pre><code>bash$ ls zpar/src/chinese/segmentor/implementations/</code>
+<output>  acl07  action  agenda  agendachart  agendaplus  viterbi</output></pre>
+
+<p>
+The name of a sub-folder is also the name of the implementation.
+The <code><code>&lt;LANGUAGE&gt;</code></code> can be:
+<ul>
+<li>
+ <code><code>chinese</code></code>: for Chinese only;
+</li>
+<li>
+ <code><code>english</code></code>: for English only;
+</li>
+<li>
+ <code><code>spanish</code></code>: for Spanish only;
+</li>
+<li>
+ <code><code>common</code></code>: for all of Chinese, English, Spanish and other languages.</ul>
+The <code><code>&lt;TASK&gt;</code></code>can be:
+<ul>
+<li>
+ <code><code>tagger</code></code>: for POS tagging;
+</li>
+<li>
+ <code><code>conparser</code></code>: for constituency parsing;
+</li>
+<li>
+ <code><code>depparser</code></code>: for dependency parsing;
+</li>
+<li>
+ <code><code>deplabeler</code></code>: for dependency labeling;
+</li>
+<li>
+ <code><code>segmentor</code></code>: for word segmentation, Chinese only.
+</li>
+</ul>
+<p>
+When the implementation of a specific task is changed,
+the corresponding component of ZPar will be updated accordingly,
+when ZPar is compiled again.
+</p>
+
+<h2><a id="sec:customizing-zpar">How to contribute code by writing a new implementation for a task</a></h2>
+
+<p>
+You may add a new implementation for a specific task
+by creating a sub-folder as described in
+<a href="#sec:how-change-impl">How to change the implementation for an existing task</a>.
+</p>
+
+<p>
+ZPar requires all the implementations compatible with
+ZPar APIs and source/object file naming conventions.
+For example, to write a new generic language POS tagger,
+one must provide
+the following class in the source file <code>tagger.h</code>
+in <code>zpar/src/generic/tagger/implementations/<code>&lt;NEW_TAGGER&gt;</code></code>,
+</p>
+
+<pre><code>namespace TARGET_LANGUAGE {
+  class CTagger {
+    public:
+    CTagger(const std::string &amp;sFeatureDBPath, bool bTrain=false);
+    void loadTagDictionary(const std::string &amp;sTagDictPath);
+    void loadKnowledge(const std::string &amp;sKnowledge);
+    bool train(const CTwoStringVector *correct);
+    void finishTraining();
+    void tag(CStringVector *sentence, CTwoStringVector *retval, int nBest=1, double *out_scores=NULL);
+  }
+}</code></pre>
+
+<p>
+A <code>tagger.cpp</code> file should contain the implementations
+of the methods,
+and be saved into the same directory.
+It should be compiled into <code>generic.postagger.o</code>.
+In addition, the new POS tagger implementation should provide two files,
+<code>tagger_weight.h</code> and <code>tagger_weight.cpp</code>,
+which should be compiled into <code>weight.o</code>.
+For other tasks and languages, you may look into an existing implementation
+and Makefile template for details.
+</p>
+
+<p>
+If the custom implementation contains all the
+source and object files according to the specifications above,
+there is nothing further to do.
+Simply change the corresponding <code>*_IMPL</code> macro in <code>zpar/Makefile</code>
+into the name of the custom implementation and build as usual.
+The build system will automatically detect the implementation,
+compile it and link it into ZPar.
+</p>
+
+<p>
+However, if it is not sufficient to accomplish
+the custom implementation in those files,
+and additional objects are necessary,
+you have to provide your own rules and actions
+to compile and link the additional objects.
+In such a situation, make a copy of the corresponding Makefile template
+for the task and language
+from <code>zpar/Makefile.d/</code> folder
+to your custom implementation folder:
+</p>
+
+<pre><code>cp Makefile.d/Makefile.&lt;LANGUAGE&gt;.&lt;TASK&gt; \
+  src/&lt;LANGUAGE&gt;/&lt;TASK&gt;/implementations/&lt;IMPL_NAME&gt;/Makefile</code></pre>
+
+<p>
+For example, to write a new generic language POS tagger,
+</p>
+<pre><code>cp Makefile.d/Makefile.ge.postagger \
+  src/common/postagger/implementations/&lt;NEW_TAGGER&gt;/Makefile}</code></pre>
+
+<p>
+And change the rules in it to compile the custom implementation.
+Note that the object file naming must strictly follow
+the conventions described above.
+You should link all the required objects of your own into one with proper name.
+For example, to write a new generic language POS tagger,
+one should make sure that
+all the necessary object files
+are linked into <code>generic.postagger.o</code>.
+For details, <code>zpar/Makefile.d/Makefile.ge.postagger.tweb</code> can be taken as an example.
+</p>
+</div>
+</div>
+<footer class="text-center">
+<p>
+ZPar Release 0.7
+</p>
+</footer>
+</body>
+</html>

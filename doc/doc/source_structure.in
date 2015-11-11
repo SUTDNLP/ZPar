@@ -1,0 +1,134 @@
+#!Introduction to the ZPar Source Structure
+
+<h2><a id="root">The <code>ROOT</code> folder</a></h2>
+<pre><code>
+zpar
+├── dist/               ... Folder for compiled binary excutables
+├── doc/                ... Folder for HTML documents
+├── Makefile            ... Main Makefile
+├── Makefile.ccg        ... Makefile rules for CCG Parser
+├── Makefile.common     ... Common Makefile rules
+├── Makefile.d/         ... Makefile rules for different tasks
+├── Makefile.doc2snt    ... Makefile rules for doc2snt
+├── Makefile.misc       ... Miscellaneous Makefile rules
+├── Makefile.zpar.en    ... Makefile rules for English
+├── Makefile.zpar.es    ... Makefile rules for Spanish
+├── Makefile.zpar.ge    ... Makefile rules for generic ZPar
+├── Makefile.zpar.zh    ... Makefile rules for Chinese
+├── obj/                ... Folder for compiled binary excutables
+├── README              ... Readme file
+├── scripts/            ... Folder for miscellaneous scripts
+└── src/                ... Folder for source codes
+</code></pre>
+
+<h2><a id="src">The <code>src</code> folder</a></h2>
+<pre><code>
+zpar/src/
+├── chinese/    ... Chinese treebanks and systems (e.g segmentor)
+├── common/     ... language independent systems (e.g parsers)
+├── english/    ... Egnlish treebanks and systems
+├── generic/    ... language independent linguistics
+├── include/    ... all header files
+├── libs/       ... cpp for header
+├── spanish/    ... Spanish treebanks
+└── test.cpp    ... sandbox
+</code></pre>
+
+<h2><a id="src-include">The <code>src/include</code> folder</a></h2>
+<pre><code>
+zpar/src/include
+├── agendachart.h
+├── agenda.h
+├── base64.h
+├── bigram.h
+├── bitarray.h
+├── buffer.h
+├── chart.h
+├── definitions.h
+├── file_utils.h
+├── hash_combined.h
+├── hash.h
+├── hash_simple.h
+├── hash_small.h
+├── hash_stream.h
+├── hash_utils.h
+├── knowledge/      ... rules
+├── learning/       ... machine learning
+├── linguistics/    ... linguistic structures
+├── linkedlist.h
+├── options.h
+├── pair_stream.h
+├── pool.h
+├── reader.h
+├── set.h
+├── stack.h
+├── table2.h
+├── tokenizer.h
+├── tuple2.h
+├── tuple3.h
+├── tuple4.h
+├── utf.h
+├── utils.h
+├── vector_stream.h
+└── writer.h
+</code></pre>
+
+<h2><a id="src-common">The <code>src/common</code> folder</a></h2>
+<pre><code>
+zpar/src/common
+├── conparser/    ... constituent parsers
+├── deplabeler/
+├── depparser/    ... dependency parsers
+└── tagger/       ... POS taggers
+</code></pre>
+
+<h2><a id="src-chinese">The <code>src/chinese</code> folder</a></h2>
+<pre><code>
+zpar/src/chinese
+├── cfg/
+├── cfg.h
+├── charcat.h
+├── conparser/      ... Chinese constituency parser (joint word segmentor)
+├── dependency/     ... Chinese dependency parser (joint word segmentor)
+├── dep.h
+├── doc2snt/        ... Chinese sentence segmentor
+├── joint/
+├── pos/
+├── segmentor/      ... Chinese word segmentor
+├── tagger/         ... Chinese POS tagger (joint word segmentor)
+├── tags.h
+├── utfword.h
+└── zpar.cpp
+</code></pre>
+
+<h2><a id="src-english">The <code>src/english</code> folder</a></h2>
+<pre><code>
+zpar/src/english
+├── cfg/
+├── cfg.h
+├── charcat.h
+├── dependency/     ... Egnlish dependency parser
+├── dep.h
+├── morph/
+├── pos/
+├── tags.h
+└── zpar.en.cpp
+</code></pre>
+
+
+<h2><a id="scripts">The <code>scripts</code> folder</a></h2>
+<p>
+The <code>scripts</code> folder contains
+the script files mentioned in the other documents
+in this manual.
+<pre><code>
+zpar/scripts/
+├── ccg/      ... CCG
+├── cfg/      ... constituent grammar tools
+├── dep/      ... dependency grammar tools
+├── lang/     ... includes treebank binairzers
+├── ml/
+├── pos/      ... POS tagger tools
+├── tools/    ... includes encoding switch
+└── var/
+</code></pre>
