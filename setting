@@ -30,7 +30,7 @@ CHINESE_DEPENDENCY_PARSER  arceager
 
 #chinese character-based dependency parser:	jcad, jcadeager
 #
-Chinese_POSDEPENDENCY_PARSER jcad
+CHINESE_POSDEPENDENCY_PARSER jcadeager
 
 #chinese dependency labeler: naive(default)
 CHINESE_DEPENDENCY_LABELER naive

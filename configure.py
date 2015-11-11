@@ -2,34 +2,41 @@
 
 import sys
 
-#english postagger: collins
+#english postagger: collins(default)
 ENGLISH_TAGGER = "collins"
 
-#english constituency parser: muhua(default), cad, cad-mvt, lin, miguel, srnew
-ENGLISH_CONSTITUENCY_PARSER = "muhua"
+#english constituency parser: jiangming(default), muhua, cad, cad-mvt, lin, miguel, srnew
+ENGLISH_CONSTITUENCY_PARSER = "jiangming"
 
-ENGLISH_STANFORD_CONVERTER = "jm_convert"
 #english dependency parser: arceager(default), arcstandard, choi, choibasic
 #                           emnlp08, liu, morphparser, punct, uppsala
 ENGLISH_DEPENDENCY_PARSER = "arceager"
 
+#english character-based dependency parser: arceager, arcstandard, arcstandard-loc
+#                                           arcstandardfilter, arcstandbuffer
+ENGLISH_POSDEPENDENCY_PARSER = "arceager"
+
 #english dependency labeler: naive(default)
 ENGLISH_DEPENDENCY_LABELER = "naive"
 
+ENGLISH_STANFORD_CONVERTER = "jiangming_convert"
 #===================================
 #chinese postagger: agenda(default), agenda_mvt,segmented
 CHINESE_TAGGER = "agenda"
 
 #chinese constituency parser: acl13(default), jcad
-CHINESE_CONSTITUENCY_PARSER = "acl13"
+CHINESE_CONSTITUENCY_PARSER  = "acl13"
 
 #chinese dependency parser: arceager(default), arceager-mvt, arceager-mvt-origin
 #                           arcstandard, choi, choibasic, emnlp08, liu, uppsala
-CHINESE_DEPENDENCY_PARSER = "arceager"
+CHINESE_DEPENDENCY_PARSER  = "arceager"
+
+#chinese character-based dependency parser: jcad, jcadeager
+#
+CHINESE_POSDEPENDENCY_PARSER = "jcad"
 
 #chinese dependency labeler: naive(default)
 CHINESE_DEPENDENCY_LABELER = "naive"
-
 
 def write_common_thing(cout):
 	cout.write("${SOURCE_DIR}/libs/reader.cpp\n")
@@ -78,6 +85,8 @@ for line in open("setting"):
 		ENGLISH_CONSTITUENCY_PARSER = line[1]
 	elif line[0] == "ENGLISH_DEPENDENCY_PARSER":
 		ENGLISH_DEPENDENCY_PARSER = line[1]
+	elif line[0] == "ENGLISH_POSDEPENDENCY_PARSER":
+		ENGLISH_POSDEPENDENCY_PARSER = line[1]
 	elif line[0] == "ENGLISH_DEPENDENCY_LABELER":
 		ENGLISH_DEPENDENCY_LABELER = line[1]
 	elif line[0] == "ENGLISH_STANFORD_CONVERTER":
@@ -88,6 +97,8 @@ for line in open("setting"):
 		CHINESE_CONSTITUENCY_PARSER = line[1]
 	elif line[0] == "CHINESE_DEPENDENCY_PARSER":
 		CHINESE_DEPENDENCY_PARSER = line[1]
+	elif line[0] == "CHINESE_POSDEPENDENCY_PARSER":
+		CHINESE_POSDEPENDENCY_PARSER = line[1]
 	elif line[0] == "CHINESE_DEPENDENCY_LABELER":
 		CHINESE_DEPENDENCY_LABELER = line[1]
 
@@ -166,6 +177,26 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.depparser.train",libs)
+	elif sys.argv[2] == "posdepparser":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/common/posdepparser)\n")
+		out.write("include_directories (${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+")\n")
+
+		out.write("add_executable (english.posdepparser.parser\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"english.posdepparser.parser",libs)
+
+		out.write("add_executable (english.posdepparser.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"english.posdepparser.train",libs)
 	elif sys.argv[2] == "deplabeler":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
@@ -272,6 +303,26 @@ elif sys.argv[1] == "chinese":
 		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.depparser.train",libs)
+	elif sys.argv[2] == "posdepparser":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/chinese/posdepparser)\n")
+		out.write("include_directories (${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+")\n")
+
+		out.write("add_executable (chinese.posdepparser.parser\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"chinese.posdepparser.parser",libs)
+
+		out.write("add_executable (chinese.posdepparser.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"chinese.posdepparser.train",libs)
 	elif sys.argv[2] == "deplabeler":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
