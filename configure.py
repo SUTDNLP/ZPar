@@ -141,6 +141,7 @@ if sys.argv[1] == "english":
 		out.write(")\n")
 		add_libs(out,"english.conparser.parser",libs)
 
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (english.conparser.train\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
@@ -166,6 +167,7 @@ if sys.argv[1] == "english":
 		out.write(")\n")
 		add_libs(out,"english.depparser.parser",libs)
 
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (english.depparser.train\n")
 		if ENGLISH_DEPENDENCY_PARSER == "morphparser":
 			out.write("${SOURCE_DIR}/english/morph/morph.cpp\n")
@@ -190,6 +192,7 @@ if sys.argv[1] == "english":
 		out.write(")\n")
 		add_libs(out,"english.posdepparser.parser",libs)
 
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (english.posdepparser.train\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
@@ -266,6 +269,7 @@ elif sys.argv[1] == "chinese":
 		out.write(")\n")
 		add_libs(out,"chinese.conparser.parser",libs)
 
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (chinese.conparser.train\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
@@ -292,6 +296,7 @@ elif sys.argv[1] == "chinese":
 		out.write(")\n")
 		add_libs(out,"chinese.depparser.parser",libs)
 
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (chinese.depparser.train\n")
 		write_common_thing(out)
 		if CHINESE_DEPENDENCY_PARSER == "morphparser":
@@ -316,6 +321,7 @@ elif sys.argv[1] == "chinese":
 		out.write(")\n")
 		add_libs(out,"chinese.posdepparser.parser",libs)
 
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (chinese.posdepparser.train\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
