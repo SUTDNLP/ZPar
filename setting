@@ -2,7 +2,7 @@
 #english postagger: collins(default)
 ENGLISH_TAGGER collins
 
-#english constituency parser: jiangming(default), muhua, cad, cad-mvt, lin, miguel, srnew
+#english constituency parser: jiangming, muhua(default), cad, cad-mvt, lin, miguel, srnew
 ENGLISH_CONSTITUENCY_PARSER muhua
 
 #english dependency parser: arceager(default), arcstandard, choi, choibasic
