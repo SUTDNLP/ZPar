@@ -156,7 +156,9 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/weight.cpp\n")
-		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
+		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_phrase":
+			out.write("${SOURCE_DIR}/common/conparser/main_phrase.cpp\n")
+		elif ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
 			out.write("${SOURCE_DIR}/common/conparser/main_joint.cpp\n")
 		else:
 			out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
@@ -169,7 +171,9 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/weight.cpp\n")
-		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
+		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_phrase":
+			out.write("${SOURCE_DIR}/common/conparser/train_phrase.cpp\n")
+		elif ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
 			out.write("${SOURCE_DIR}/common/conparser/train_joint.cpp\n")
 		else:
 			out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
