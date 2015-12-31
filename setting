@@ -3,7 +3,7 @@
 ENGLISH_TAGGER collins
 
 #english constituency parser: jiangming(default), muhua, cad, cad-mvt, lin, miguel, srnew
-ENGLISH_CONSTITUENCY_PARSER jiangming
+ENGLISH_CONSTITUENCY_PARSER muhua
 
 #english dependency parser: arceager(default), arcstandard, choi, choibasic
 # 							emnlp08, liu, morphparser, punct, uppsala
@@ -34,4 +34,14 @@ CHINESE_POSDEPENDENCY_PARSER jcadeager
 
 #chinese dependency labeler: naive(default)
 CHINESE_DEPENDENCY_LABELER naive
-#
+
+
+GENERIC_TAGGER collins
+
+GENERIC_CONSTITUENCY_PARSER srnew
+
+GENERIC_DEPENDENCY_PARSER arceager
+
+GENERIC_DEPENDENCY_LABELER naive
+
+GENERIC_CCG_PARSER srnew

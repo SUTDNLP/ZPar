@@ -38,6 +38,15 @@ CHINESE_POSDEPENDENCY_PARSER = "jcad"
 #chinese dependency labeler: naive(default)
 CHINESE_DEPENDENCY_LABELER = "naive"
 
+GENERIC_TAGGER = "collins"
+
+GENERIC_CONSTITUENCY_PARSER = "muhua"
+
+GENERIC_DEPENDENCY_PARSER = "arceager"
+
+GENERIC_DEPENDENCY_LABELER = "naive"
+
+GENERIC_CCG_PARSER = "srnew"
 def write_common_thing(cout):
 	cout.write("${SOURCE_DIR}/libs/reader.cpp\n")
 	cout.write("${SOURCE_DIR}/libs/writer.cpp\n")
@@ -101,6 +110,16 @@ for line in open("setting"):
 		CHINESE_POSDEPENDENCY_PARSER = line[1]
 	elif line[0] == "CHINESE_DEPENDENCY_LABELER":
 		CHINESE_DEPENDENCY_LABELER = line[1]
+	elif line[0] == "GENERIC_TAGGER":
+		GENERIC_TAGGER = line[1]
+	elif line[0] == "GENERIC_CONSTITUENCY_PARSER":
+		GENERIC_CONSTITUENCY_PARSER = line[1]
+	elif line[0] == "GENERIC_DEPENDENCY_PARSER":
+		GENERIC_DEPENDENCY_PARSER = line[1]
+	elif line[0] == "GENERIC_DEPENDENCY_LABELER":
+		GENERIC_DEPENDENCY_LABELER = line[1]
+	elif line[0] == "GENERIC_CCG_PARSER":
+		GENERIC_CCG_PARSER = line[1]
 
 out.write("include_directories (${SOURCE_DIR} ${SOURCE_DIR}/include)\n")
 out.write("include_directories (${SOURCE_DIR}/"+sys.argv[1]+")\n")
@@ -137,7 +156,10 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/weight.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
+		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
+			out.write("${SOURCE_DIR}/common/conparser/main_joint.cpp\n")
+		else:
+			out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.conparser.parser",libs)
 
@@ -147,7 +169,10 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/weight.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
+		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
+			out.write("${SOURCE_DIR}/common/conparser/train_joint.cpp\n")
+		else:
+			out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.conparser.train",libs)
 	elif sys.argv[2] == "depparser":
@@ -220,7 +245,7 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.deplabeler.train",libs)
-	elif sys.argv[2] == "convert":
+	elif sys.argv[2] == "converter":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/conparser)\n")
 		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_STANFORD_CONVERTER+")\n")
@@ -350,3 +375,131 @@ elif sys.argv[1] == "chinese":
 		out.write(")\n")
 		add_libs(out,"chinese.deplabeler.train",libs)
 
+elif sys.argv[1] == "generic":
+	if sys.argv[2] == "postagger":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/common/tagger)\n")
+		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+")\n")
+
+		out.write("add_executable (generic.postagger.tagger\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger_weight.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.postagger.tagger",libs)
+
+		out.write("add_executable (generic.postagger.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger_weight.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.postagger.train",libs)
+	elif sys.argv[2] == "conparser":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DGENERIC_CONLABEL_SIZE=12 -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/common/conparser)\n")
+		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+")\n")
+
+		out.write("add_executable (generic.conparser.parser\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
+		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.conparser.parser",libs)
+
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("add_executable (generic.conparser.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
+		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.conparser.train",libs)
+	elif sys.argv[2] == "depparser":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/common/depparser)\n")
+		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+")\n")
+
+		out.write("add_executable (generic.depparser.parser\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.depparser.parser",libs)
+
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("add_executable (generic.depparser.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.depparser.train",libs)
+	elif sys.argv[2] == "deplabeler":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
+		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+")\n")
+
+		out.write("add_executable (generic.deplabeler.labeler\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.deplabeler.labeler",libs)
+
+		out.write("add_executable (generic.deplabeler.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.deplabeler.train",libs)
+	elif sys.argv[2] == "ccgparser":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DFRAGMENTED_TREE -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/common/conparser)\n")
+		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+")\n")
+
+		out.write("add_executable (generic.ccgparser.parser\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
+		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.ccgparser.parser",libs)
+
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DFRAGMENTED_TREE -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("add_executable (generic.ccgparser.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
+		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
+		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"generic.ccgparser.train",libs)
