@@ -645,7 +645,7 @@ void CConParser::updateScoresForState( CWeight *cast_weights , const CStateItem 
 
 void CConParser::updateScoresForStates( const CStateItem *output , const CStateItem *correct ) {
 
-//   std::cerr << "updating parameters ... " ;
+   std::cerr << "updating parameters ... " ;
 
    static double F;
 #ifdef TRAIN_LOSS
@@ -682,7 +682,7 @@ void CConParser::updateScoresForStates( const CStateItem *output , const CStateI
  *--------------------------------------------------------------*/
 
 void CConParser::updateScoresForMultipleStates( const CStateItem *output_start , const CStateItem *output_end , const CStateItem  *candidate , const CStateItem *correct ) {
-//   std::cerr << "updating parameters ... " ;
+   std::cerr << "updating parameters ... " ;
    // computateDeltasDist
    unsigned K = 0;
    updateScoresForState(m_gold, correct, eAdd);
@@ -850,7 +850,7 @@ void CConParser::getLabeledBrackets(const CSentenceParsed &parse_tree, CStack<CL
 
 void CConParser::updateScoresByLoss( const CStateItem *output , const CStateItem *correct ) {
 
-//   std::cerr << "updating parameters ... " ;
+   std::cerr << "updating parameters ... " ;
 
    // TODO
    const static CStateItem* oitems[MAX_SENTENCE_SIZE*(2+UNARY_MOVES)+2];
@@ -1240,6 +1240,23 @@ void CConParser::train( const CSentenceMultiCon<CConstituent> &con_input, const 
    m_rule.UnsetLexConstituents();
 
 };
+
+void CConParser::setExtra( const std::vector< std::vector< std::string> > &_extra, int size){
+	extra.resize(size);
+	for(int i = 0; i < size; i ++){
+		extra[i].resize(size);
+	}
+	for(int i = 0; i < _extra.size(); i ++){
+		assert(_extra[i].size() >= 3);
+		int s = std::atoi(_extra[i][0].c_str());
+		int e = std::atoi(_extra[i][1].c_str());
+		assert(s < size)
+		assert(e < size);
+		for(int j = 2; j < _extra.size(); j ++){
+			extra[s][e].push_back(std::atof(_extra[i][j].c_str()));
+		}
+	}
+}
 
 #ifdef NO_NEG_FEATURE
 /*---------------------------------------------------------------

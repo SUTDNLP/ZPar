@@ -26,7 +26,8 @@ namespace TARGET_LANGUAGE {
 class CConParser : public CConParserBase {
 
 private:
-   std::vector<SoftFeature>& extra;
+
+   std::vector< std::vector< std::vector< double> > > extra;
    std::vector< CTaggedWord<CTag, TAG_SEPARATOR> > m_lCache;
    std::vector<unsigned long> m_lWordLen;
    int m_nTrainingRound;
@@ -142,7 +143,7 @@ public:
    }
 
 public:
-   void setExtra(const std::vector<std::vector<std::string> >& _extra) { extra.clear(); for( int i = 0; i < _extra.size(); i ++) extra.push(SoftFeature(_extra[i]));}
+   void setExtra( const std::vector<std::vector<std::string> > &_extra, int size);
    void parse( const CTwoStringVector &sentence , CSentenceParsed *retval , int nBest=1 , conparser::SCORE_TYPE *scores=0 ) ;
    void parse( const CSentenceMultiCon<CConstituent> &sentence , CSentenceParsed *retval , int nBest=1 , conparser::SCORE_TYPE *scores=0 ) ;
    void train( const CSentenceParsed &correct , int round ) ;
@@ -169,7 +170,7 @@ public:
 private:
    enum SCORE_UPDATE {eAdd=0, eSubtract};
 
-   void work( const bool bTrain, const CTwoStringVector &sentence , CSentenceParsed *retval, const CSentenceParsed &correct,  int nBest, conparser::SCORE_TYPE *scores ) ;
+   void work( const bool bTrain, const CTwoStringVector &sentence , CSentenceParsed *retval, const CSentenceParsed &correct, int nBest, conparser::SCORE_TYPE *scores ) ;
 
    // get the global score for a parsed sentence or section
    inline void getOrUpdateStackScore( conparser::CWeight *cast_weights, CPackedScoreType<conparser::SCORE_TYPE, conparser::CAction::MAX> &retval, const conparser::CStateItem *item, const conparser::CAction &action=conparser::CAction(), conparser::SCORE_TYPE amount=0, int round=0 );
