@@ -3,7 +3,7 @@
 ENGLISH_TAGGER collins
 
 #english constituency parser: jiangming, muhua(default), cad, cad-mvt, lin, miguel, srnew
-ENGLISH_CONSTITUENCY_PARSER muhua
+ENGLISH_CONSTITUENCY_PARSER jiangming_phrase
 
 #english dependency parser: arceager(default), arcstandard, choi, choibasic
 # 							emnlp08, liu, morphparser, punct, uppsala
@@ -20,6 +20,9 @@ ENGLISH_STANFORD_CONVERTER jiangming_convert
 #===================================
 #chinese postagger: agenda(default), agenda_mvt,segmented
 CHINESE_TAGGER agenda
+
+#chinese segmentor: agenda(default)
+CHINESE_SEGMENTOR agenda
 
 #chinese constituency parser: acl13(default), jcad
 CHINESE_CONSTITUENCY_PARSER  acl13

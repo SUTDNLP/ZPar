@@ -24,6 +24,9 @@ ENGLISH_STANFORD_CONVERTER = "jiangming_convert"
 #chinese postagger: agenda(default), agenda_mvt,segmented
 CHINESE_TAGGER = "agenda"
 
+#chinese segmentor: agenda(default),
+CHINESE_SEGMENTOR = "agenda"
+
 #chinese constituency parser: acl13(default), jcad
 CHINESE_CONSTITUENCY_PARSER  = "acl13"
 
@@ -100,6 +103,8 @@ for line in open("setting"):
 		ENGLISH_DEPENDENCY_LABELER = line[1]
 	elif line[0] == "ENGLISH_STANFORD_CONVERTER":
 		ENGLISH_STANFORD_CONVERTER = line[1];
+	elif line[0] == "CHINESE_SEGMENTOR":
+		CHINESE_SEGMENTOR = line[1]
 	elif line[0] == "CHINESE_TAGGER":
 		CHINESE_TAGGER = line[1]
 	elif line[0] == "CHINESE_CONSTITUENCY_PARSER":
@@ -263,6 +268,25 @@ if sys.argv[1] == "english":
 		add_libs(out,"english.conparser.converter",libs)
 
 elif sys.argv[1] == "chinese":
+	if sys.argv[2] == "segmentor":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("include_directories (${SOURCE_DIR}/chinese/segmentor)\n")
+		out.write("include_directories (${SOURCE_DIR}/chinese/segmentor/implementations/"+CHINESE_SEGMENTOR+")\n")
+
+		out.write("add_executable (chinese.segmentor.segment\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/chinese/segmentor/"+CHINESE_SEGMENTOR+".cpp\n")
+		out.write("${SOURCE_DIR}/chinese/segmentor/main.cpp\n")
+		out.write(")\n")
+		add_libs(out,"chinese.segmentor.segment",libs)
+
+		out.write("add_executable (chinese.segmentor.train\n")
+		write_common_thing(out)
+		out.write("${SOURCE_DIR}/chinese/segmentor/"+CHINESE_SEGMENTOR+".cpp\n")
+		out.write("${SOURCE_DIR}/chinese/segmentor/train.cpp\n")
+		out.write(")\n")
+		add_libs(out,"chinese.segmentor.train",libs)
+	
 	if sys.argv[2] == "postagger":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/chinese/tagger)\n")
