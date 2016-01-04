@@ -1,4 +1,6 @@
-#==================================
+#===================================
+# English application
+#===================================
 #english postagger: collins(default)
 ENGLISH_TAGGER collins
 
@@ -16,7 +18,12 @@ ENGLISH_POSDEPENDENCY_PARSER arceager
 #english dependency labeler: naive(default)
 ENGLISH_DEPENDENCY_LABELER naive
 
+#english constituency to stanford arc: jiangming_convert(default)
 ENGLISH_STANFORD_CONVERTER jiangming_convert
+
+
+#===================================
+# Chinese application
 #===================================
 #chinese postagger: agenda(default), agenda_mvt,segmented
 CHINESE_TAGGER agenda
@@ -32,19 +39,38 @@ CHINESE_CONSTITUENCY_PARSER  acl13
 CHINESE_DEPENDENCY_PARSER  arceager
 
 #chinese character-based dependency parser:	jcad, jcadeager
-#
 CHINESE_POSDEPENDENCY_PARSER jcadeager
 
 #chinese dependency labeler: naive(default)
 CHINESE_DEPENDENCY_LABELER naive
 
-
+#===================================
+# Generic applicatin
+#===================================
+#generic postagger: collins(default)
 GENERIC_TAGGER collins
 
+#generic constituency parser: srnew(default)
 GENERIC_CONSTITUENCY_PARSER srnew
 
+#generic dependency parser: arceager(default)
 GENERIC_DEPENDENCY_PARSER arceager
 
+#generic dependency labeler: naive(default)
 GENERIC_DEPENDENCY_LABELER naive
 
+#generic ccg parser: srnew(default)
 GENERIC_CCG_PARSER srnew
+
+#===================================
+# Spanish application
+#===================================
+#spanish postagger: collins(default)
+SPANISH_TAGGER collins
+
+#spanish dependency parser: arceager(default)
+SPANISH_DEPENDENCY_PARSER arceager
+
+#spanish depedndency labeler: naive(default)
+SPANISH_DEPENDENCY_LABELER naive
+
