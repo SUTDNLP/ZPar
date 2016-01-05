@@ -7,7 +7,7 @@
 //#define NO_NEG_FEATURE
 
 // using passive aggressive
-//#define TRAIN_MARGIN
+// #define TRAIN_MARGIN
 
 // applying loss func
 //#define TRAIN_LOSS
@@ -22,7 +22,7 @@
 
 #define CONLL_OUTPUT
 // scale scores? this must be used with TRAIN_MARGIN or undefined
-//#define SCALE
+// #define SCALE
 
 // The size of agenda
 static const unsigned long AGENDA_SIZE = 64;

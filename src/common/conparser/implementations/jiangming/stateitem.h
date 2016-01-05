@@ -358,7 +358,9 @@ public:
    linkedNodes.clearandsize(MAX_SENTENCE_SIZE);
    }
 
-   CStateNode() : id(-1), type(), temp(0), constituent(), left_child(0), right_child(0), lexical_head(0), lexical_start(0), lexical_end(0),stfLinksCollapsed(0), stfLinks(0), m_umbinarizedSubNodes(0), linkedNodes(MAX_SENTENCE_SIZE) {}
+   CStateNode() : id(-1), type(), temp(0), constituent(), left_child(0), right_child(0), lexical_head(0), lexical_start(0), lexical_end(0),stfLinksCollapsed(0), stfLinks(0), m_umbinarizedSubNodes(0), linkedNodes(MAX_SENTENCE_SIZE) {
+   		linkedNodes.clearandsize(MAX_SENTENCE_SIZE);
+   }
    virtual ~CStateNode() {
    //miguel
    	 CLink* tmp = stfLinks;
@@ -458,7 +460,7 @@ public:
 
    SCORE_TYPE score;
    CStateNode node;
-   
+
    const CStateItem *statePtr;
    const CStateItem *stackPtr;
    int current_word;
@@ -491,7 +493,8 @@ public:
    virtual ~CStateItem() {}
 public:
    void clear() {
-      statePtr = 0;
+      words = 0;
+	  statePtr = 0;
       stackPtr = 0;
       current_word = 0;
       node.clear();
@@ -622,6 +625,7 @@ protected:
       assert(!IsTerminated());
       const static CStateNode *l, *r;
       assert(stackPtr!=0);
+	  retval->current_word = current_word;
       if (single_child) {
          assert(head_left == false);
          assert(temporary == false);
@@ -684,7 +688,6 @@ protected:
 			retval->buildStanfordLink(STANFORD_DEP_DEP, m->lexical_head, h->lexical_head);
 		}
       }
-      retval->current_word = current_word;
       assert(!IsTerminated());
    }
 

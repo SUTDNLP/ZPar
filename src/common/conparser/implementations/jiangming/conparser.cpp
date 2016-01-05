@@ -645,7 +645,7 @@ void CConParser::updateScoresForState( CWeight *cast_weights , const CStateItem 
 
 void CConParser::updateScoresForStates( const CStateItem *output , const CStateItem *correct ) {
 
-   std::cerr << "updating parameters ... " ;
+//   std::cerr << "updating parameters ... " ;
 
    static double F;
 #ifdef TRAIN_LOSS
@@ -682,7 +682,7 @@ void CConParser::updateScoresForStates( const CStateItem *output , const CStateI
  *--------------------------------------------------------------*/
 
 void CConParser::updateScoresForMultipleStates( const CStateItem *output_start , const CStateItem *output_end , const CStateItem  *candidate , const CStateItem *correct ) {
-   std::cerr << "updating parameters ... " ;
+//   std::cerr << "updating parameters ... " ;
    // computateDeltasDist
    unsigned K = 0;
    updateScoresForState(m_gold, correct, eAdd);
@@ -850,7 +850,7 @@ void CConParser::getLabeledBrackets(const CSentenceParsed &parse_tree, CStack<CL
 
 void CConParser::updateScoresByLoss( const CStateItem *output , const CStateItem *correct ) {
 
-   std::cerr << "updating parameters ... " ;
+//   std::cerr << "updating parameters ... " ;
 
    // TODO
    const static CStateItem* oitems[MAX_SENTENCE_SIZE*(2+UNARY_MOVES)+2];
@@ -967,10 +967,10 @@ void CConParser::work( const bool bTrain , const CTwoStringVector &sentence , CS
    static unsigned index;
    static bool bSkipLast;
   SCORE_TYPE best_score = 0;
-//jiangming use AllTerminated;
-//#ifdef SCALE
+
+#ifdef ALL_TERMINATED
    bool bAllTerminated;
-//#endif
+#endif
 
    static CPackedScoreType<SCORE_TYPE, CAction::MAX> packedscores;
 
@@ -1047,21 +1047,18 @@ void CConParser::work( const bool bTrain , const CTwoStringVector &sentence , CS
             }
          }
       } // done iterating generator item
-
-//jiangming use allTerminated
-//#ifdef SCALE
-      bAllTerminated = true;
-//#endif
+#ifdef ALL_TERMINATED
+	  bAllTerminated = true;
+#endif
       // insertItems
       for (tmp_j=0; tmp_j<beam.size(); ++tmp_j) { // insert from
          pGenerator = beam.item(tmp_j)->item;
          pGenerator->Move(lattice_index[index+1], beam.item(tmp_j)->action);
          lattice_index[index+1]->score = beam.item(tmp_j)->score;
-//#ifdef SCALE
-         if ( ! lattice_index[index+1]->IsTerminated() )
-            bAllTerminated = false;
-//#endif
-
+#ifdef ALL_TERMINATED
+		 if ( ! lattice_index[index+1]->IsTerminated() )
+			bAllTerminated = false;
+#endif
          if ( pBestGen == 0 || lattice_index[index+1]->score > pBestGen->score ) {
             pBestGen = lattice_index[index+1];
          }
@@ -1076,18 +1073,14 @@ void CConParser::work( const bool bTrain , const CTwoStringVector &sentence , CS
          }
          ++lattice_index[index+1];
       }
-/*
-#ifdef SCALE
+
+#ifdef ALL_TERMINATED
       if (bAllTerminated)
          break; // while
 #else
       if (pBestGen == 0 || pBestGen->IsTerminated())
          break; // while
 #endif
-*///jiangming
-	  if (bAllTerminated)
-		  break;
-
       // update items if correct item jump out of the agenda
       if (bTrain) {
          if (!bCorrect ) {
@@ -1156,7 +1149,7 @@ void CConParser::work( const bool bTrain , const CTwoStringVector &sentence , CS
 
    TRACE("Outputing sentence");
    if(nBest == AGENDA_SIZE){
-		   std::cerr<<"ok0"<<std::endl;
+//		   std::cerr<<"ok0"<<std::endl;
 	  int i = 0;
 	  for(const CStateItem* p = lattice_index[index]; p!= lattice_index[index+1]; p ++, i++){
 		p->GenerateTree(sentence, retval[i]);
@@ -1182,6 +1175,7 @@ void CConParser::work( const bool bTrain , const CTwoStringVector &sentence , CS
    }
    else{
    pBestGen->GenerateTree( sentence, retval[0] );
+   
    if (pBestGen)
      best_score = pBestGen->score;
    if (scores)
@@ -1194,10 +1188,13 @@ void CConParser::work( const bool bTrain , const CTwoStringVector &sentence , CS
    }
    std::reverse(acts.begin(),acts.end());
    std::vector<CStateItem> items(acts.size()+1);
+   items[0].clear();
    items[0].words = (&m_lCache);
    for(int i = 0; i < acts.size(); i ++){
+//		std::cerr<<acts[i]<<std::endl;
 		CStateItem* from = &items[i];
 		CStateItem* to = &items[i+1];
+		to->clear();
 		from->Move_arc(to,acts[i]);
    }
    items[acts.size()].GenerateStanford( sentence, o_conll);
