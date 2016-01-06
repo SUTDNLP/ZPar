@@ -1,0 +1,18 @@
+
+#================================================================
+#spanish
+#================================================================
+
+spanish.depparser.$(SPANISH_DEPENDENCY_PARSER): $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.o $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/spanish.depparser.$(SPANISH_DEPENDENCY_PARSER).so $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.o $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.o: $(SRC_COMMON)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/depparser.cpp
+	$(MKDIR) $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DLABELED -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/depparser -I$(SRC_COMMON)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER) -c $(SRC_COMMON)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/depparser.cpp -o $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.o
+
+$(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.weight.o: $(SRC_COMMON)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/depparser_weight.cpp
+	$(MKDIR) $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DLABELED -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/depparser -I$(SRC_COMMON)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER) -c $(SRC_COMMON)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/depparser_weight.cpp -o $(OBJECT_SPANISH)/depparser/implementations/$(SPANISH_DEPENDENCY_PARSER)/spanish.depparser.weight.o
+
+

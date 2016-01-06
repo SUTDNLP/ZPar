@@ -1,0 +1,27 @@
+
+#================================================================
+#generic
+#================================================================
+
+generic.deplabeler.$(GENERIC_DEPENDENCY_LABELER): $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.weight.o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.pos.o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.label.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/generic.deplabeler.$(GENERIC_DEPENDENCY_LABELER).so $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.pos.o: $(SRC_GENERIC)/pos/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS)  -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER) -c $(SRC_GENERIC)/pos/generic.cpp -o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.pos.o
+
+$(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.label.o: $(SRC_GENERIC)/dependency/label/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS)  -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER) -c $(SRC_GENERIC)/dependency/label/generic.cpp -o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.label.o
+
+
+$(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.o: $(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/deplabeler.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/deplabeler.cpp -o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.o
+
+$(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.weight.o: $(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/weight.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/weight.cpp -o $(OBJECT_GENERIC)/deplabeler/implementations/$(GENERIC_DEPENDENCY_LABELER)/generic.deplabeler.weight.o
+
+

@@ -1,0 +1,14 @@
+
+#================================================================
+#chinese
+#================================================================
+
+chinese.segmentor.$(CHINESE_SEGMENTOR): $(OBJECT_CHINESE)/segmentor/implementations/$(CHINESE_SEGMENTOR)/chinese.segmentor.o  $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/chinese.segmentor.$(CHINESE_SEGMENTOR).so $(OBJECT_CHINESE)/segmentor/implementations/$(CHINESE_SEGMENTOR)/chinese.segmentor.o  $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_CHINESE)/segmentor/implementations/$(CHINESE_SEGMENTOR)/chinese.segmentor.o: $(SRC_CHINESE)/segmentor/$(CHINESE_SEGMENTOR).cpp
+	$(MKDIR) $(OBJECT_CHINESE)/segmentor/implementations/$(CHINESE_SEGMENTOR)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=chinese -I$(SRC_CHINESE) -I$(SRC_CHINESE)/segmentor -I$(SRC_CHINESE)/segmentor/implementations/$(CHINESE_SEGMENTOR) -c $(SRC_CHINESE)/segmentor/$(CHINESE_SEGMENTOR).cpp -o $(OBJECT_CHINESE)/segmentor/implementations/$(CHINESE_SEGMENTOR)/chinese.segmentor.o
+
+

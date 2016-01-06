@@ -1,0 +1,27 @@
+
+#================================================================
+#generic
+#================================================================
+
+generic.depparser.$(GENERIC_DEPENDENCY_PARSER): $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.weight.o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.pos.o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.label.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/generic.depparser.$(GENERIC_DEPENDENCY_PARSER).so $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.weight.o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.pos.o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.label.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.pos.o: $(SRC_GENERIC)/pos/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DLABELED -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/depparser -I$(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER) -c $(SRC_GENERIC)/pos/generic.cpp -o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.pos.o
+
+$(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.label.o: $(SRC_GENERIC)/dependency/label/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DLABELED -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/depparser -I$(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER) -c $(SRC_GENERIC)/dependency/label/generic.cpp -o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.label.o
+
+
+$(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.o: $(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/depparser.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DLABELED -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/depparser -I$(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER) -c $(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/depparser.cpp -o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.o
+
+$(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.weight.o: $(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/depparser_weight.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DLABELED -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/depparser -I$(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER) -c $(SRC_COMMON)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/depparser_weight.cpp -o $(OBJECT_GENERIC)/depparser/implementations/$(GENERIC_DEPENDENCY_PARSER)/generic.depparser.weight.o
+
+

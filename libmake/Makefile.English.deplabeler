@@ -1,0 +1,17 @@
+
+#================================================================
+#English
+#================================================================
+
+english.deplabeler.$(ENGLISH_DEPENDENCY_LABELER): $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.o $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/english.deplabeler.$(ENGLISH_DEPENDENCY_LABELER).so $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.o $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.o: $(SRC_COMMON)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/deplabeler.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/deplabeler.cpp -o $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.o
+
+$(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.weight.o: $(SRC_COMMON)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/weight.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/weight.cpp -o $(OBJECT_ENGLISH)/deplabeler/implementations/$(ENGLISH_DEPENDENCY_LABELER)/english.deplabeler.weight.o
+
