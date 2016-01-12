@@ -1,9 +1,0 @@
-COMPILE
-=======
-./configure
-
-Based on file "setting", "configure.py" is to generate CMakeList.txt for specific application.
-e.g. "./configure.py english postagger" generates CMakeList.txt for English postagger
-
-Then use command "make" to compile.
-
