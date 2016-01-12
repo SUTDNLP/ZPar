@@ -1,0 +1,17 @@
+
+#================================================================
+#chinese
+#================================================================
+
+chinese.deplabeler.$(CHINESE_DEPENDENCY_LABELER): $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.o $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/libchinese.deplabeler.$(CHINESE_DEPENDENCY_LABELER).so $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.o $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.o: $(SRC_COMMON)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/deplabeler.cpp
+	$(MKDIR) $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=chinese -I$(SRC_CHINESE) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/deplabeler.cpp -o $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.o
+
+$(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.weight.o: $(SRC_COMMON)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/weight.cpp
+	$(MKDIR) $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=chinese -I$(SRC_CHINESE) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/weight.cpp -o $(OBJECT_CHINESE)/deplabeler/implementations/$(CHINESE_DEPENDENCY_LABELER)/chinese.deplabeler.weight.o
+

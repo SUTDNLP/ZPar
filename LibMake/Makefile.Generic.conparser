@@ -1,0 +1,29 @@
+
+#================================================================
+#generic
+#================================================================
+
+generic.conparser.$(GENERIC_CONSTITUENCY_PARSER): $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.weight.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/constituent.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/cfg.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.pos.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/libgeneric.conparser.$(GENERIC_CONSTITUENCY_PARSER).so $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.weight.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/constituent.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/cfg.o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.pos.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/constituent.o: $(SRC_LIBS)/linguistics/constituent.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -c $(SRC_LIBS)/linguistics/constituent.cpp -o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/constituent.o
+
+$(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/cfg.o: $(SRC_LIBS)/linguistics/cfg/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -c $(SRC_LIBS)/linguistics/cfg/generic.cpp -o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/linguistics/cfg.o
+
+$(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.pos.o: $(SRC_GENERIC)/pos/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER) -c $(SRC_GENERIC)/pos/generic.cpp -o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.pos.o
+
+$(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.o: $(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/conparser.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/conparser.cpp -o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.o
+
+$(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.weight.o: $(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/weight.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)
+	$(CXX) $(CXXFLAGS) -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/weight.cpp -o $(OBJECT_GENERIC)/conparser/implementations/$(GENERIC_CONSTITUENCY_PARSER)/generic.conparser.weight.o
+

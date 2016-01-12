@@ -1,0 +1,18 @@
+
+#================================================================
+#chinese
+#================================================================
+
+chinese.postagger.$(CHINESE_TAGGER): $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.o $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/libchinese.postagger.$(CHINESE_TAGGER).so $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.o $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.o: $(SRC_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/tagger.cpp
+	$(MKDIR) $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=chinese -I$(SRC_CHINESE) -I$(SRC_CHINESE)/tagger -I$(SRC_CHINESE)/tagger/implementations/$(CHINESE_TAGGER) -c $(SRC_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/tagger.cpp -o $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.o
+
+$(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.weight.o: $(SRC_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/weight.cpp
+	$(MKDIR) $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=chinese -I$(SRC_CHINESE) -I$(SRC_CHINESE)/tagger -I$(SRC_CHINESE)/tagger/implementations/$(CHINESE_TAGGER) -c $(SRC_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/weight.cpp -o $(OBJECT_CHINESE)/tagger/implementations/$(CHINESE_TAGGER)/chinese.postagger.weight.o
+
+

@@ -1,0 +1,14 @@
+
+#================================================================
+#chinese
+#================================================================
+
+chinese.doc2snt: $(OBJECT_CHINESE)/doc2snt/chinese.doc2snt.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/libchinese.doc2snt.so $(OBJECT_CHINESE)/doc2snt/chinese.doc2snt.o  $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_CHINESE)/doc2snt/chinese.doc2snt.o: $(SRC_CHINESE)/doc2snt/doc2snt.cpp
+	$(MKDIR) $(OBJECT_CHINESE)/doc2snt/
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=chinese -I$(SRC_CHINESE) -c $(SRC_CHINESE)/doc2snt/doc2snt.cpp -o $(OBJECT_CHINESE)/doc2snt/chinese.doc2snt.o
+
+

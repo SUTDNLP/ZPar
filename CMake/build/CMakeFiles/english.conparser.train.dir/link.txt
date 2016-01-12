@@ -1,0 +1,1 @@
+/usr/lib64/ccache/c++   -std=c++11 -g -w -W -O3  -DNDEBUG -DTARGET_LANGUAGE=english -O3 -DNDEBUG    CMakeFiles/english.conparser.train.dir/src/common/conparser/train.cpp.o  -o /home/ljm/project/zpar/bin/english.conparser.train  -L/home/ljm/project/zpar/CMake/libmake/libs -rdynamic -lenglish.conparser.jiangming.train -Wl,-rpath,/home/ljm/project/zpar/CMake/libmake/libs 

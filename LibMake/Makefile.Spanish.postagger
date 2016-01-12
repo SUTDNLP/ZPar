@@ -1,0 +1,18 @@
+
+#================================================================
+#spanish
+#================================================================
+
+spanish.postagger.$(SPANISH_TAGGER): $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.o $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+	$(MKDIR) $(LIBS_DIR)
+	$(CXX) -shared -o $(LIBS_DIR)/libspanish.postagger.$(SPANISH_TAGGER).so $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.o $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+
+$(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.o: $(SRC_COMMON)/tagger/implementations/$(SPANISH_TAGGER)/tagger.cpp
+	$(MKDIR) $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)
+	$(CXX) $(CXXFLAGS) -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/tagger -I$(SRC_COMMON)/tagger/implementations/$(SPANISH_TAGGER) -c $(SRC_COMMON)/tagger/implementations/$(SPANISH_TAGGER)/tagger.cpp -o $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.o
+
+$(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.weight.o: $(SRC_COMMON)/tagger/implementations/$(SPANISH_TAGGER)/tagger_weight.cpp
+	$(MKDIR) $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)
+	$(CXX) $(CXXFLAGS) -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/tagger -I$(SRC_COMMON)/tagger/implementations/$(SPANISH_TAGGER) -c $(SRC_COMMON)/tagger/implementations/$(SPANISH_TAGGER)/tagger_weight.cpp -o $(OBJECT_SPANISH)/tagger/implementations/$(SPANISH_TAGGER)/spanish.postagger.weight.o
+
+
