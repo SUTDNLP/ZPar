@@ -127,7 +127,7 @@ out = open("CMakeLists.txt","w")
 
 out.write("cmake_minimum_required (VERSION 2.8.0)\n")
 out.write('project ("ZPar - A collections of sentence parsing tools")\n')
-out.write("set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin)\n")
+out.write("set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../dist)\n")
 out.write("set (SOURCE_DIR             ${PROJECT_SOURCE_DIR}/src)\n")
 
 libs=list()
