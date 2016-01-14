@@ -59,9 +59,10 @@ int nBest, const bool bScores, const bool bBinary) {
       scores = new conparser::SCORE_TYPE[nBest];
       os_scores = new std::ofstream(std::string(sOutputFile+".scores").c_str());
    }
-
    output_sent = new CSentenceParsed[nBest];
+#ifdef CONLL_OUTPUT 
    o_conll = new CCoNLLOutput[nBest];
+#endif
    // Read the next example
    if (cInputFormat=='c')
       bReadSuccessful = ((*is)>>con_input);
@@ -69,10 +70,10 @@ int nBest, const bool bScores, const bool bBinary) {
       bReadSuccessful = input_reader->readTaggedSentence(&raw_input, false, TAG_SEPARATOR);
    while( bReadSuccessful ) {
 
+	  ++nCount;
+	  if(nCount%1000 == 0)
       std::cerr << "Sentence " << nCount << "...";
-      ++ nCount;
-
-      // Find decoder output
+	  // Find decoder output
 #ifdef CONLL_OUTPUT
       if (cInputFormat=='c')
          parser.parse( con_input , output_sent , cOutputFormat=='b'?0:o_conll , nBest , scores ) ;
@@ -107,7 +108,7 @@ int nBest, const bool bScores, const bool bBinary) {
 	  	os<< std::endl;
 		if(bScores) *os_scores<<std::endl;
 	  }
-
+		if(nCount%1000 ==0)
       std::cerr << "done. " << std::endl;
 
       // Read the next example
@@ -118,7 +119,9 @@ int nBest, const bool bScores, const bool bBinary) {
    }
 
    delete [] output_sent ;
+#ifdef CONLL_OUTPUT
    delete [] o_conll;
+#endif
    if (input_reader) delete input_reader;
    if (is) {is->close(); delete is;}
    os.close();
@@ -174,6 +177,7 @@ int main(int argc, char* argv[]) {
               cOutputFormat,
 #endif
               nBest, bScores, bBinary);
+	  
    }
    catch (const std::string &e) {
       std::cerr << "Error: " << e << std::endl;
