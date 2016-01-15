@@ -3,16 +3,16 @@
 #English
 #================================================================
 
-english.postagger.$(ENGLISH_TAGGER): $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+english.postagger.$(ENGLISH_TAGGER_IMPL): $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
 	$(MKDIR) $(LIBS_DIR)
-	$(CXX) -shared -o $(LIBS_DIR)/libenglish.postagger.$(ENGLISH_TAGGER).so $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+	$(CXX) -shared -o $(LIBS_DIR)/libenglish.postagger.$(ENGLISH_TAGGER_IMPL).so $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
 
-$(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.o: $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER)/tagger.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)
-	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/tagger -I$(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER) -c $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER)/tagger.cpp -o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.o
+$(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.o: $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/tagger.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/tagger -I$(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER_IMPL) -c $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/tagger.cpp -o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.o
 
-$(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.weight.o: $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER)/tagger_weight.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)
-	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/tagger -I$(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER) -c $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER)/tagger_weight.cpp -o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER)/english.postagger.weight.o
+$(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.weight.o: $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/tagger_weight.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/tagger -I$(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER_IMPL) -c $(SRC_COMMON)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/tagger_weight.cpp -o $(OBJECT_ENGLISH)/tagger/implementations/$(ENGLISH_TAGGER_IMPL)/english.postagger.weight.o
 
 

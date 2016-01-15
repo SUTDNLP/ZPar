@@ -87,7 +87,7 @@ $(OBJECT_LIBS)/learning/dbn.o: $(SRC_LIBS)/learning/dbn.cpp
 	$(MKDIR) $(OBJECT_LIBS)/learning
 	$(CXX) $(CXXFLAGS) -c $(SRC_LIBS)/learning/dbn.cpp -o $(OBJECT_LIBS)/learning/dbn.o
 
-english: english.postagger.${ENGLISH_TAGGER} english.conparser.${ENGLISH_CONSTITUENCY_PARSER} english.depparser.${ENGLISH_DEPENDENCY_PARSER} english.deplabeler.${ENGLISH_DEPENDENCY_LABELER} english.conparser.stanford_arc english.posdepparser.${ENGLISH_POSDEPENDENCY_PARSER}
+english: english.postagger.${ENGLISH_TAGGER_IMPL} english.conparser.${ENGLISH_CONPARSER_IMPL} english.depparser.${ENGLISH_DEPPARSER_IMPL} english.deplabeler.${ENGLISH_DEPLABELER_IMPL} english.conparser.stanford_arc english.posdepparser.${ENGLISH_POSDEPPARSER_IMPL}
 
 include Makefile.English.postagger
 
@@ -101,7 +101,7 @@ include Makefile.English.deplabeler
 
 include Makefile.English.conparser.stanford_arc
 
-chinese: chinese.segmentor.${CHINESE_SEGMENTOR} chinese.postagger.${CHINESE_TAGGER} chinese.conparser.${CHINESE_CONSTITUENCY_PARSER} chinese.depparser.${CHINESE_DEPENDENCY_PARSER} chinese.deplabeler.${CHINESE_DEPENDENCY_LABELER} chinese.posdepparser.${CHINESE_POSDEPENDENCY_PARSER} chinese.doc2snt
+chinese: chinese.segmentor.${CHINESE_SEGMENTOR} chinese.postagger.${CHINESE_TAGGER_IMPL} chinese.conparser.${CHINESE_CONPARSER_IMPL} chinese.depparser.${CHINESE_DEPPARSER_IMPL} chinese.deplabeler.${CHINESE_DEPLABELER_IMPL} chinese.posdepparser.${CHINESE_POSDEPPARSER_IMPL} chinese.doc2snt
 
 include Makefile.Chinese.segmentor
 
@@ -117,7 +117,7 @@ include Makefile.Chinese.deplabeler
 
 include Makefile.Chinese.doc2snt
 
-generic: generic.postagger.${GENERIC_TAGGER} generic.conparser.${GENERIC_CONSTITUENCY_PARSER} generic.depparser.${GENERIC_DEPENDENCY_PARSER} generic.deplabeler.${GENERIC_DEPENDENCY_LABELER} generic.ccgparser.${GENERIC_CCG_PARSER}
+generic: generic.postagger.${TAGGER_IMPL} generic.conparser.${CONPARSER_IMPL} generic.depparser.${DEPPARSER_IMPL} generic.deplabeler.${DEPLABELER_IMPL} generic.ccgparser.${CCG_PARSER}
 
 include Makefile.Generic.ccgparser
 
@@ -129,7 +129,7 @@ include Makefile.Generic.depparser
 
 include Makefile.Generic.deplabeler
 
-spanish: spanish.postagger.${SPANISH_TAGGER} spanish.depparser.${SPANISH_DEPENDENCY_PARSER} spanish.deplabeler.${SPANISH_DEPENDENCY_LABELER} 
+spanish: spanish.postagger.${SPANISH_TAGGER_IMPL} spanish.depparser.${SPANISH_DEPPARSER_IMPL} spanish.deplabeler.${SPANISH_DEPLABELER_IMPL} 
 include Makefile.Spanish.postagger
 
 include Makefile.Spanish.depparser

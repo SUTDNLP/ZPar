@@ -3,34 +3,34 @@
 #English
 #================================================================
 
-english.conparser.$(ENGLISH_CONSTITUENCY_PARSER): english.conparser.$(ENGLISH_CONSTITUENCY_PARSER).train english.conparser.$(ENGLISH_CONSTITUENCY_PARSER).decode
+english.conparser.$(ENGLISH_CONPARSER_IMPL): english.conparser.$(ENGLISH_CONPARSER_IMPL).train english.conparser.$(ENGLISH_CONPARSER_IMPL).decode
 
-english.conparser.$(ENGLISH_CONSTITUENCY_PARSER).train: $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+english.conparser.$(ENGLISH_CONPARSER_IMPL).train: $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
 	$(MKDIR) $(LIBS_DIR)
-	$(CXX) -shared -o $(LIBS_DIR)/libenglish.conparser.$(ENGLISH_CONSTITUENCY_PARSER).train.so $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+	$(CXX) -shared -o $(LIBS_DIR)/libenglish.conparser.$(ENGLISH_CONPARSER_IMPL).train.so $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
 
-english.conparser.$(ENGLISH_CONSTITUENCY_PARSER).decode: $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+english.conparser.$(ENGLISH_CONPARSER_IMPL).decode: $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
 	$(MKDIR) $(LIBS_DIR)
-	$(CXX) -shared -o $(LIBS_DIR)/libenglish.conparser.$(ENGLISH_CONSTITUENCY_PARSER).decode.so $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+	$(CXX) -shared -o $(LIBS_DIR)/libenglish.conparser.$(ENGLISH_CONPARSER_IMPL).decode.so $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.decode.o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics/constituent.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
 
 
-$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics/constituent.o: $(SRC_LIBS)/linguistics/constituent.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics
-	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -c $(SRC_LIBS)/linguistics/constituent.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/linguistics/constituent.o
+$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics/constituent.o: $(SRC_LIBS)/linguistics/constituent.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -c $(SRC_LIBS)/linguistics/constituent.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/linguistics/constituent.o
 
-$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/conparser.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)
-	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/conparser.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.o
+$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/conparser.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/conparser.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.o
 
-$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/weight.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)
-	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/weight.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.o
+$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/weight.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/weight.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.o
 
-$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.decode.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/conparser.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)
-	$(CXX) $(CXXFLAGS) -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/conparser.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.decode.o
+$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.decode.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/conparser.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/conparser.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.decode.o
 
-$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.decode.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/weight.cpp
-	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)
-	$(CXX) $(CXXFLAGS) -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/weight.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONSTITUENCY_PARSER)/english.conparser.weight.decode.o
+$(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.decode.o: $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/weight.cpp
+	$(MKDIR) $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE=english -I$(SRC_ENGLISH) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL) -c $(SRC_COMMON)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/weight.cpp -o $(OBJECT_ENGLISH)/conparser/implementations/$(ENGLISH_CONPARSER_IMPL)/english.conparser.weight.decode.o
 

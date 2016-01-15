@@ -3,16 +3,16 @@
 #spanish
 #================================================================
 
-spanish.deplabeler.$(SPANISH_DEPENDENCY_LABELER): $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+spanish.deplabeler.$(SPANISH_DEPLABELER_IMPL): $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
 	$(MKDIR) $(LIBS_DIR)
-	$(CXX) -shared -o $(LIBS_DIR)/libspanish.deplabeler.$(SPANISH_DEPENDENCY_LABELER).so $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+	$(CXX) -shared -o $(LIBS_DIR)/libspanish.deplabeler.$(SPANISH_DEPLABELER_IMPL).so $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.weight.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
 
-$(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.o: $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/deplabeler.cpp
-	$(MKDIR) $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)
-	$(CXX) $(CXXFLAGS) -DLABELED -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/deplabeler.cpp -o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.o
+$(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.o: $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/deplabeler.cpp
+	$(MKDIR) $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)
+	$(CXX) $(CXXFLAGS) -DLABELED -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL) -c $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/deplabeler.cpp -o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.o
 
-$(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.weight.o: $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/weight.cpp
-	$(MKDIR) $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)
-	$(CXX) $(CXXFLAGS) -DLABELED -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER) -c $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/weight.cpp -o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPENDENCY_LABELER)/spanish.deplabeler.weight.o
+$(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.weight.o: $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/weight.cpp
+	$(MKDIR) $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)
+	$(CXX) $(CXXFLAGS) -DLABELED -DES09_DEPENDENCIES -DTARGET_LANGUAGE=spanish -I$(SRC_SPANISH) -I$(SRC_COMMON)/deplabeler -I$(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL) -c $(SRC_COMMON)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/weight.cpp -o $(OBJECT_SPANISH)/deplabeler/implementations/$(SPANISH_DEPLABELER_IMPL)/spanish.deplabeler.weight.o
 
 

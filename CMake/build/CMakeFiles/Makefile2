@@ -53,38 +53,73 @@ CMAKE_SOURCE_DIR = /home/ljm/project/zpar/CMake
 CMAKE_BINARY_DIR = /home/ljm/project/zpar/CMake/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/english.conparser.converter.dir
+# Target rules for target CMakeFiles/generic.postagger.tagger.dir
 
 # All Build rule for target.
-CMakeFiles/english.conparser.converter.dir/all:
-	$(MAKE) -f CMakeFiles/english.conparser.converter.dir/build.make CMakeFiles/english.conparser.converter.dir/depend
-	$(MAKE) -f CMakeFiles/english.conparser.converter.dir/build.make CMakeFiles/english.conparser.converter.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ljm/project/zpar/CMake/build/CMakeFiles  1 2 3 4 5 6 7 8 9
-	@echo "Built target english.conparser.converter"
-.PHONY : CMakeFiles/english.conparser.converter.dir/all
+CMakeFiles/generic.postagger.tagger.dir/all:
+	$(MAKE) -f CMakeFiles/generic.postagger.tagger.dir/build.make CMakeFiles/generic.postagger.tagger.dir/depend
+	$(MAKE) -f CMakeFiles/generic.postagger.tagger.dir/build.make CMakeFiles/generic.postagger.tagger.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ljm/project/zpar/CMake/build/CMakeFiles  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+	@echo "Built target generic.postagger.tagger"
+.PHONY : CMakeFiles/generic.postagger.tagger.dir/all
 
 # Include target in all.
-all: CMakeFiles/english.conparser.converter.dir/all
+all: CMakeFiles/generic.postagger.tagger.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/english.conparser.converter.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ljm/project/zpar/CMake/build/CMakeFiles 9
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/english.conparser.converter.dir/all
+CMakeFiles/generic.postagger.tagger.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ljm/project/zpar/CMake/build/CMakeFiles 26
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/generic.postagger.tagger.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ljm/project/zpar/CMake/build/CMakeFiles 0
-.PHONY : CMakeFiles/english.conparser.converter.dir/rule
+.PHONY : CMakeFiles/generic.postagger.tagger.dir/rule
 
 # Convenience name for target.
-english.conparser.converter: CMakeFiles/english.conparser.converter.dir/rule
-.PHONY : english.conparser.converter
+generic.postagger.tagger: CMakeFiles/generic.postagger.tagger.dir/rule
+.PHONY : generic.postagger.tagger
 
 # clean rule for target.
-CMakeFiles/english.conparser.converter.dir/clean:
-	$(MAKE) -f CMakeFiles/english.conparser.converter.dir/build.make CMakeFiles/english.conparser.converter.dir/clean
-.PHONY : CMakeFiles/english.conparser.converter.dir/clean
+CMakeFiles/generic.postagger.tagger.dir/clean:
+	$(MAKE) -f CMakeFiles/generic.postagger.tagger.dir/build.make CMakeFiles/generic.postagger.tagger.dir/clean
+.PHONY : CMakeFiles/generic.postagger.tagger.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/english.conparser.converter.dir/clean
+clean: CMakeFiles/generic.postagger.tagger.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/generic.postagger.train.dir
+
+# All Build rule for target.
+CMakeFiles/generic.postagger.train.dir/all:
+	$(MAKE) -f CMakeFiles/generic.postagger.train.dir/build.make CMakeFiles/generic.postagger.train.dir/depend
+	$(MAKE) -f CMakeFiles/generic.postagger.train.dir/build.make CMakeFiles/generic.postagger.train.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ljm/project/zpar/CMake/build/CMakeFiles  27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52
+	@echo "Built target generic.postagger.train"
+.PHONY : CMakeFiles/generic.postagger.train.dir/all
+
+# Include target in all.
+all: CMakeFiles/generic.postagger.train.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/generic.postagger.train.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ljm/project/zpar/CMake/build/CMakeFiles 26
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/generic.postagger.train.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ljm/project/zpar/CMake/build/CMakeFiles 0
+.PHONY : CMakeFiles/generic.postagger.train.dir/rule
+
+# Convenience name for target.
+generic.postagger.train: CMakeFiles/generic.postagger.train.dir/rule
+.PHONY : generic.postagger.train
+
+# clean rule for target.
+CMakeFiles/generic.postagger.train.dir/clean:
+	$(MAKE) -f CMakeFiles/generic.postagger.train.dir/build.make CMakeFiles/generic.postagger.train.dir/clean
+.PHONY : CMakeFiles/generic.postagger.train.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/generic.postagger.train.dir/clean
 .PHONY : clean
 
 #=============================================================================

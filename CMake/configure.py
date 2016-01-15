@@ -6,21 +6,21 @@ import sys
 # English application
 #===================================
 #english postagger: collins(default)
-ENGLISH_TAGGER = "collins"
+ENGLISH_TAGGER_IMPL = "collins"
 
 #english constituency parser: jiangming, muhua(default), cad, cad-mvt, lin, miguel, srnew
-ENGLISH_CONSTITUENCY_PARSER = "muhuan"
+ENGLISH_CONPARSER_IMPL = "muhua"
 
 #english dependency parser: arceager(default), arcstandard, choi, choibasic
 # 							emnlp08, liu, morphparser, punct, uppsala
-ENGLISH_DEPENDENCY_PARSER = "arceager"
+ENGLISH_DEPPARSER_IMPL = "arceager"
 
 #english character-based dependency parser:	arceager(default), arcstandard, arcstandard-loc
 #											arcstandardfilter
-ENGLISH_POSDEPENDENCY_PARSER = "arceager"
+ENGLISH_POSDEPPARSER_IMPL = "arceager"
 
 #english dependency labeler: naive(default)
-ENGLISH_DEPENDENCY_LABELER = "naive"
+ENGLISH_DEPLABELER_IMPL = "naive"
 
 #english constituency to stanford arc: jiangming_convert(default)
 ENGLISH_STANFORD_CONVERTER = "jiangming_convert"
@@ -30,53 +30,53 @@ ENGLISH_STANFORD_CONVERTER = "jiangming_convert"
 # Chinese application
 #===================================
 #chinese postagger: agenda(default), agenda_mvt,segmented
-CHINESE_TAGGER = "agenda"
+CHINESE_TAGGER_IMPL = "agenda"
 
 #chinese segmentor: agenda(default)
-CHINESE_SEGMENTOR = "agenda"
+SEGMENTOR_IMPL = "agenda"
 
 #chinese constituency parser: acl13(default), jcad
-CHINESE_CONSTITUENCY_PARSER = "acl13"
+CHINESE_CONPARSER_IMPL = "acl13"
 
 #chinese dependency parser: arceager(default), arceager-mvt, arceager-mvt-origin
 #							arcstandard, choi, choibasic, emnlp08, liu, uppsala
-CHINESE_DEPENDENCY_PARSER = "arceager"
+CHINESE_DEPPARSER_IMPL = "arceager"
 
 #chinese character-based dependency parser:	jcad, jcadeager
-CHINESE_POSDEPENDENCY_PARSER = "jcadeager"
+CHINESE_POSDEPPARSER_IMPL = "jcadeager"
 
 #chinese dependency labeler: naive(default)
-CHINESE_DEPENDENCY_LABELER = "naive"
+CHINESE_DEPLABELER_IMPL = "naive"
 
 #===================================
 # Generic applicatin
 #===================================
 #generic postagger: collins(default)
-GENERIC_TAGGER = "collins"
+TAGGER_IMPL = "collins"
 
 #generic constituency parser: srnew(default)
-GENERIC_CONSTITUENCY_PARSER = "srnew"
+CONPARSER_IMPL = "srnew"
 
 #generic dependency parser: arceager(default)
-GENERIC_DEPENDENCY_PARSER = "arceager"
+DEPPARSER_IMPL = "arceager"
 
 #generic dependency labeler: naive(default)
-GENERIC_DEPENDENCY_LABELER = "naive"
+DEPPARSER_IMPL = "naive"
 
 #generic ccg parser: srnew(default)
-GENERIC_CCG_PARSER = "srnew"
+CCGPARSER_IMPL = "srnew"
 
 #===================================
 # Spanish application
 #===================================
 #spanish postagger: collins(default)
-SPANISH_TAGGER = "collins"
+SPANISH_TAGGER_IMPL = "collins"
 
 #spanish dependency parser: arceager(default)
-SPANISH_DEPENDENCY_PARSER = "arceager"
+SPANISH_DEPPARSER_IMPL = "arceager"
 
 #spanish depedndency labeler: naive(default)
-SPANISH_DEPENDENCY_LABELER = "naive"
+SPANISH_DEPLABELER_IMPL = "naive"
 
 def write_common_thing(cout):
 	cout.write("${SOURCE_DIR}/libs/reader.cpp\n")
@@ -140,46 +140,46 @@ for line in open("CMake.config"):
 	line = line.split()
 	if line[0] == "libs":
 		libs = line[1:]
-	elif line[0] == "ENGLISH_TAGGER":
-		ENGLISH_TAGGER = line[2]
-	elif line[0] == "ENGLISH_CONSTITUENCY_PARSER":
-		ENGLISH_CONSTITUENCY_PARSER = line[2]
-	elif line[0] == "ENGLISH_DEPENDENCY_PARSER":
-		ENGLISH_DEPENDENCY_PARSER = line[2]
-	elif line[0] == "ENGLISH_POSDEPENDENCY_PARSER":
-		ENGLISH_POSDEPENDENCY_PARSER = line[2]
-	elif line[0] == "ENGLISH_DEPENDENCY_LABELER":
-		ENGLISH_DEPENDENCY_LABELER = line[2]
+	elif line[0] == "ENGLISH_TAGGER_IMPL":
+		ENGLISH_TAGGER_IMPL = line[2]
+	elif line[0] == "ENGLISH_CONPARSER_IMPL":
+		ENGLISH_CONPARSER_IMPL = line[2]
+	elif line[0] == "ENGLISH_DEPPARSER_IMPL":
+		ENGLISH_DEPPARSER_IMPL = line[2]
+	elif line[0] == "ENGLISH_POSDEPPARSER_IMPL":
+		ENGLISH_POSDEPPARSER_IMPL = line[2]
+	elif line[0] == "ENGLISH_DEPLABELER_IMPL":
+		ENGLISH_DEPLABELER_IMPL = line[2]
 	elif line[0] == "ENGLISH_STANFORD_CONVERTER":
 		ENGLISH_STANFORD_CONVERTER = line[2];
-	elif line[0] == "CHINESE_SEGMENTOR":
-		CHINESE_SEGMENTOR = line[2]
-	elif line[0] == "CHINESE_TAGGER":
-		CHINESE_TAGGER = line[2]
-	elif line[0] == "CHINESE_CONSTITUENCY_PARSER":
-		CHINESE_CONSTITUENCY_PARSER = line[2]
-	elif line[0] == "CHINESE_DEPENDENCY_PARSER":
-		CHINESE_DEPENDENCY_PARSER = line[2]
-	elif line[0] == "CHINESE_POSDEPENDENCY_PARSER":
-		CHINESE_POSDEPENDENCY_PARSER = line[2]
-	elif line[0] == "CHINESE_DEPENDENCY_LABELER":
-		CHINESE_DEPENDENCY_LABELER = line[2]
-	elif line[0] == "GENERIC_TAGGER":
-		GENERIC_TAGGER = line[2]
-	elif line[0] == "GENERIC_CONSTITUENCY_PARSER":
-		GENERIC_CONSTITUENCY_PARSER = line[2]
-	elif line[0] == "GENERIC_DEPENDENCY_PARSER":
-		GENERIC_DEPENDENCY_PARSER = line[2]
-	elif line[0] == "GENERIC_DEPENDENCY_LABELER":
-		GENERIC_DEPENDENCY_LABELER = line[2]
-	elif line[0] == "GENERIC_CCG_PARSER":
-		GENERIC_CCG_PARSER = line[2]
-	elif line[0] == "SPANISH_TAGGER":
-		SPANISH_TAGGER = line[2]
-	elif line[0] == "SPANISH_DEPENDENCY_PARSER":
-		SPANISH_DEPENDENCY_PARSER = line[2]
-	elif line[0] == "SPANISH_DEPENDENCY_LABELER":
-		SPANISH_DEPENDENCY_LABELER = line[2]
+	elif line[0] == "SEGMENTOR_IMPL":
+		SEGMENTOR_IMPL = line[2]
+	elif line[0] == "CHINESE_TAGGER_IMPL":
+		CHINESE_TAGGER_IMPL = line[2]
+	elif line[0] == "CHINESE_CONPARSER_IMPL":
+		CHINESE_CONPARSER_IMPL = line[2]
+	elif line[0] == "CHINESE_DEPPARSER_IMPL":
+		CHINESE_DEPPARSER_IMPL = line[2]
+	elif line[0] == "CHINESE_POSDEPPARSER_IMPL":
+		CHINESE_POSDEPPARSER_IMPL = line[2]
+	elif line[0] == "CHINESE_DEPLABELER_IMPL":
+		CHINESE_DEPLABELER_IMPL = line[2]
+	elif line[0] == "TAGGER_IMPL":
+		TAGGER_IMPL = line[2]
+	elif line[0] == "CONPARSER_IMPL":
+		CONPARSER_IMPL = line[2]
+	elif line[0] == "DEPPARSER_IMPL":
+		DEPPARSER_IMPL = line[2]
+	elif line[0] == "DEPPARSER_IMPL":
+		DEPPARSER_IMPL = line[2]
+	elif line[0] == "CCGPARSER_IMPL":
+		CCGPARSER_IMPL = line[2]
+	elif line[0] == "SPANISH_TAGGER_IMPL":
+		SPANISH_TAGGER_IMPL = line[2]
+	elif line[0] == "SPANISH_DEPPARSER_IMPL":
+		SPANISH_DEPPARSER_IMPL = line[2]
+	elif line[0] == "SPANISH_DEPLABELER_IMPL":
+		SPANISH_DEPLABELER_IMPL = line[2]
 
 out.write("include_directories (${SOURCE_DIR} ${SOURCE_DIR}/include)\n")
 out.write("include_directories (${SOURCE_DIR}/"+sys.argv[1]+")\n")
@@ -188,20 +188,20 @@ if sys.argv[1] == "english":
 	if sys.argv[2] == "postagger":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/tagger)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER_IMPL+")\n")
 
 		out.write("add_executable (english.postagger.tagger\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER+"/tagger_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER_IMPL+"/tagger_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/tagger/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.postagger.tagger",libs)
 
 		out.write("add_executable (english.postagger.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER+"/tagger_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER_IMPL+"/tagger_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/tagger/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.postagger.train",libs)
@@ -209,16 +209,16 @@ if sys.argv[1] == "english":
 	elif sys.argv[2] == "conparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/conparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+")\n")
 
 		out.write("add_executable (english.conparser.parser\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/weight.cpp\n")
-		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_phrase":
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/weight.cpp\n")
+		if ENGLISH_CONPARSER_IMPL == "jiangming_phrase":
 			out.write("${SOURCE_DIR}/common/conparser/main_phrase.cpp\n")
-		elif ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
+		elif ENGLISH_CONPARSER_IMPL == "jiangming_joint" or ENGLISH_CONPARSER_IMPL == "jiangming_base_joint":
 			out.write("${SOURCE_DIR}/common/conparser/main_joint.cpp\n")
 		else:
 			out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
@@ -229,11 +229,11 @@ if sys.argv[1] == "english":
 		out.write("add_executable (english.conparser.train\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONSTITUENCY_PARSER+"/weight.cpp\n")
-		if ENGLISH_CONSTITUENCY_PARSER == "jiangming_phrase":
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/weight.cpp\n")
+		if ENGLISH_CONPARSER_IMPL == "jiangming_phrase":
 			out.write("${SOURCE_DIR}/common/conparser/train_phrase.cpp\n")
-		elif ENGLISH_CONSTITUENCY_PARSER == "jiangming_joint" or ENGLISH_CONSTITUENCY_PARSER == "jiangming_base_joint":
+		elif ENGLISH_CONPARSER_IMPL == "jiangming_joint" or ENGLISH_CONPARSER_IMPL == "jiangming_base_joint":
 			out.write("${SOURCE_DIR}/common/conparser/train_joint.cpp\n")
 		else:
 			out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
@@ -242,41 +242,41 @@ if sys.argv[1] == "english":
 	elif sys.argv[2] == "depparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/depparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPENDENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (english.depparser.parser\n")
 		write_common_thing(out)
-		if ENGLISH_DEPENDENCY_PARSER == "morphparser":
+		if ENGLISH_DEPPARSER_IMPL == "morphparser":
 			out.write("${SOURCE_DIR}/english/morph/morph.cpp\n")
 			out.write("${SOURCE_DIR}/english/morph/penn_lexicon.cpp\n")
 			out.write("${SOURCE_DIR}/english/morph/aux_lexicon.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.depparser.parser",libs)
 
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (english.depparser.train\n")
-		if ENGLISH_DEPENDENCY_PARSER == "morphparser":
+		if ENGLISH_DEPPARSER_IMPL == "morphparser":
 			out.write("${SOURCE_DIR}/english/morph/morph.cpp\n")
 			out.write("${SOURCE_DIR}/english/morph/penn_lexicon.cpp\n")
 			out.write("${SOURCE_DIR}/english/morph/aux_lexicon.cpp\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+ENGLISH_DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.depparser.train",libs)
 	elif sys.argv[2] == "posdepparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/posdepparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (english.posdepparser.parser\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPPARSER_IMPL+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPPARSER_IMPL+"/posdepparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/posdepparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.posdepparser.parser",libs)
@@ -284,28 +284,28 @@ if sys.argv[1] == "english":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (english.posdepparser.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPPARSER_IMPL+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/posdepparser/implementations/"+ENGLISH_POSDEPPARSER_IMPL+"/posdepparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/posdepparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.posdepparser.train",libs)
 	elif sys.argv[2] == "deplabeler":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPENDENCY_LABELER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPLABELER_IMPL+")\n")
 
 		out.write("add_executable (english.deplabeler.labeler\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPLABELER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPLABELER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.deplabeler.labeler",libs)
 
 		out.write("add_executable (english.deplabeler.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPLABELER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+ENGLISH_DEPLABELER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"english.deplabeler.train",libs)
@@ -326,18 +326,18 @@ elif sys.argv[1] == "chinese":
 	if sys.argv[2] == "segmentor":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/chinese/segmentor)\n")
-		out.write("include_directories (${SOURCE_DIR}/chinese/segmentor/implementations/"+CHINESE_SEGMENTOR+")\n")
+		out.write("include_directories (${SOURCE_DIR}/chinese/segmentor/implementations/"+SEGMENTOR_IMPL+")\n")
 
 		out.write("add_executable (chinese.segmentor.segment\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/chinese/segmentor/"+CHINESE_SEGMENTOR+".cpp\n")
+		out.write("${SOURCE_DIR}/chinese/segmentor/"+SEGMENTOR_IMPL+".cpp\n")
 		out.write("${SOURCE_DIR}/chinese/segmentor/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.segmentor.segment",libs)
 
 		out.write("add_executable (chinese.segmentor.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/chinese/segmentor/"+CHINESE_SEGMENTOR+".cpp\n")
+		out.write("${SOURCE_DIR}/chinese/segmentor/"+SEGMENTOR_IMPL+".cpp\n")
 		out.write("${SOURCE_DIR}/chinese/segmentor/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.segmentor.train",libs)
@@ -345,34 +345,34 @@ elif sys.argv[1] == "chinese":
 	if sys.argv[2] == "postagger":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/chinese/tagger)\n")
-		out.write("include_directories (${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER_IMPL+")\n")
 
 		out.write("add_executable (chinese.postagger.tagger\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/chinese/tagger/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.postagger.tagger",libs)
 
 		out.write("add_executable (chinese.postagger.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/tagger/implementations/"+CHINESE_TAGGER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/chinese/tagger/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.postagger.train",libs)
 	elif sys.argv[2] == "conparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/chinese/conparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONSTITUENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONPARSER_IMPL+")\n")
 
 		out.write("add_executable (chinese.conparser.parser\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/libs/linguistics/jointconstituent.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/chinese/conparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.conparser.parser",libs)
@@ -382,24 +382,24 @@ elif sys.argv[1] == "chinese":
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/libs/linguistics/jointconstituent.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/conparser/implementations/"+CHINESE_CONPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/chinese/conparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.conparser.train",libs)
 	elif sys.argv[2] == "depparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/depparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPENDENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (chinese.depparser.parser\n")
 		write_common_thing(out)
-		if CHINESE_DEPENDENCY_PARSER == "morphparser":
+		if CHINESE_DEPPARSER_IMPL == "morphparser":
 			out.write("${SOURCE_DIR}/chinese/morph/morph.cpp\n")
 			out.write("${SOURCE_DIR}/chinese/morph/penn_lexicon.cpp\n")
 			out.write("${SOURCE_DIR}/chinese/morph/aux_lexicon.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.depparser.parser",libs)
@@ -407,24 +407,24 @@ elif sys.argv[1] == "chinese":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (chinese.depparser.train\n")
 		write_common_thing(out)
-		if CHINESE_DEPENDENCY_PARSER == "morphparser":
+		if CHINESE_DEPPARSER_IMPL == "morphparser":
 			out.write("${SOURCE_DIR}/chinese/morph/morph.cpp\n")
 			out.write("${SOURCE_DIR}/chinese/morph/penn_lexicon.cpp\n")
 			out.write("${SOURCE_DIR}/chinese/morph/aux_lexicon.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+CHINESE_DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.depparser.train",libs)
 	elif sys.argv[2] == "posdepparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/chinese/posdepparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (chinese.posdepparser.parser\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPPARSER_IMPL+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPPARSER_IMPL+"/posdepparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/chinese/posdepparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.posdepparser.parser",libs)
@@ -432,28 +432,28 @@ elif sys.argv[1] == "chinese":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (chinese.posdepparser.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser.cpp\n")
-		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPENDENCY_PARSER+"/posdepparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPPARSER_IMPL+"/posdepparser.cpp\n")
+		out.write("${SOURCE_DIR}/chinese/posdepparser/implementations/"+CHINESE_POSDEPPARSER_IMPL+"/posdepparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/chinese/posdepparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.posdepparser.train",libs)
 	elif sys.argv[2] == "deplabeler":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPENDENCY_LABELER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPLABELER_IMPL+")\n")
 
 		out.write("add_executable (chinese.deplabeler.labeler\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPLABELER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPLABELER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.deplabeler.labeler",libs)
 
 		out.write("add_executable (chinese.deplabeler.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPLABELER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+CHINESE_DEPLABELER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"chinese.deplabeler.train",libs)
@@ -470,28 +470,28 @@ elif sys.argv[1] == "generic":
 	if sys.argv[2] == "postagger":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/tagger)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+")\n")
 
 		out.write("add_executable (generic.postagger.tagger\n")
 		write_common_thing(out)
-		if GENERIC_TAGGER == "tweb":
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tweb_wrapper.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/BaseExtractor.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Tagging.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/NNScorer.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/ChExtractor.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Sentence.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Config.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Analysis.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/EasyFirstPOS.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/EnExtractor.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/GlobalMap.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Pool.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Train.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Template.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/util.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger_weight.cpp\n")
+		if TAGGER_IMPL == "tweb":
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/tweb_wrapper.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/BaseExtractor.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Tagging.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/NNScorer.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/ChExtractor.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Sentence.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Config.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Analysis.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/EasyFirstPOS.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/EnExtractor.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/GlobalMap.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Pool.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Train.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Template.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/util.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/tagger_weight.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
 		out.write("${SOURCE_DIR}/common/tagger/main.cpp\n")
@@ -500,24 +500,24 @@ elif sys.argv[1] == "generic":
 
 		out.write("add_executable (generic.postagger.train\n")
 		write_common_thing(out)
-		if GENERIC_TAGGER == "tweb":
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tweb_wrapper.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/BaseExtractor.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Tagging.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/NNScorer.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/ChExtractor.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Sentence.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Config.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Analysis.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/EasyFirstPOS.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/EnExtractor.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/GlobalMap.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Pool.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Train.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/Template.cpp\n")
-			out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/TWeb/src/util.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+GENERIC_TAGGER+"/tagger_weight.cpp\n")
+		if TAGGER_IMPL == "tweb":
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/tweb_wrapper.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/BaseExtractor.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Tagging.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/NNScorer.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/ChExtractor.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Sentence.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Config.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Analysis.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/EasyFirstPOS.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/EnExtractor.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/GlobalMap.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Pool.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Train.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/Template.cpp\n")
+			out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/TWeb/src/util.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+TAGGER_IMPL+"/tagger_weight.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
 		out.write("${SOURCE_DIR}/common/tagger/train.cpp\n")
@@ -526,15 +526,15 @@ elif sys.argv[1] == "generic":
 	elif sys.argv[2] == "conparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DGENERIC_CONLABEL_SIZE=12 -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/conparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+")\n")
 
 		out.write("add_executable (generic.conparser.parser\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.conparser.parser",libs)
@@ -545,22 +545,22 @@ elif sys.argv[1] == "generic":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.conparser.train",libs)
 	elif sys.argv[2] == "depparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DPERCEPTRON_FOR_DECODING -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/depparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+DEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (generic.depparser.parser\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.depparser.parser",libs)
@@ -570,22 +570,22 @@ elif sys.argv[1] == "generic":
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+GENERIC_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.depparser.train",libs)
 	elif sys.argv[2] == "deplabeler":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+DEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (generic.deplabeler.labeler\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+DEPPARSER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+DEPPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.deplabeler.labeler",libs)
@@ -594,23 +594,23 @@ elif sys.argv[1] == "generic":
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/generic/dependency/label/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+GENERIC_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+DEPPARSER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+DEPPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.deplabeler.train",libs)
 	elif sys.argv[2] == "ccgparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DFRAGMENTED_TREE -DPERCEPTRON_FOR_DECODING -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/conparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+")\n")
 
 		out.write("add_executable (generic.ccgparser.parser\n")
 		write_common_thing(out)
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.ccgparser.parser",libs)
@@ -621,8 +621,8 @@ elif sys.argv[1] == "generic":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/libs/linguistics/cfg/generic.cpp\n")
 		out.write("${SOURCE_DIR}/generic/pos/generic.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/conparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/implementations/"+GENERIC_CONSTITUENCY_PARSER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/conparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/implementations/"+CONPARSER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"generic.ccgparser.train",libs)
@@ -630,20 +630,20 @@ elif sys.argv[1] == "spanish":
 	if sys.argv[2] == "postagger":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DES09_DEPENDENCIES -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/tagger)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER_IMPL+")\n")
 
 		out.write("add_executable (spanish.postagger.tagger\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER+"/tagger_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER_IMPL+"/tagger_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/tagger/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"spanish.postagger.tagger",libs)
 
 		out.write("add_executable (spanish.postagger.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER+"/tagger.cpp\n")
-		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER+"/tagger_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER_IMPL+"/tagger.cpp\n")
+		out.write("${SOURCE_DIR}/common/tagger/implementations/"+SPANISH_TAGGER_IMPL+"/tagger_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/tagger/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"spanish.postagger.train",libs)
@@ -651,12 +651,12 @@ elif sys.argv[1] == "spanish":
 	elif sys.argv[2] == "depparser":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DES09_DEPENDENCIES -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/depparser)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPENDENCY_PARSER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPPARSER_IMPL+")\n")
 
 		out.write("add_executable (spanish.depparser.parser\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"spanish.depparser.parser",libs)
@@ -664,28 +664,28 @@ elif sys.argv[1] == "spanish":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DES09_DEPENDENCIES -DLABELED -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("add_executable (spanish.depparser.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPENDENCY_PARSER+"/depparser.cpp\n")
-		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPENDENCY_PARSER+"/depparser_weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPPARSER_IMPL+"/depparser.cpp\n")
+		out.write("${SOURCE_DIR}/common/depparser/implementations/"+SPANISH_DEPPARSER_IMPL+"/depparser_weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/depparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"spanish.depparser.train",libs)
 	elif sys.argv[2] == "deplabeler":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DES09_DEPENDENCIES -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/deplabeler)\n")
-		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPENDENCY_LABELER+")\n")
+		out.write("include_directories (${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPLABELER_IMPL+")\n")
 
 		out.write("add_executable (spanish.deplabeler.labeler\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPLABELER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPLABELER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"spanish.deplabeler.labeler",libs)
 
 		out.write("add_executable (spanish.deplabeler.train\n")
 		write_common_thing(out)
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPENDENCY_LABELER+"/deplabeler.cpp\n")
-		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPENDENCY_LABELER+"/weight.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPLABELER_IMPL+"/deplabeler.cpp\n")
+		out.write("${SOURCE_DIR}/common/deplabeler/implementations/"+SPANISH_DEPLABELER_IMPL+"/weight.cpp\n")
 		out.write("${SOURCE_DIR}/common/deplabeler/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"spanish.deplabeler.train",libs)

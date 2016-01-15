@@ -3,27 +3,27 @@
 #generic
 #================================================================
 
-generic.ccgparser.$(GENERIC_CCG_PARSER): $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.weight.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/constituent.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/cfg.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.pos.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
+generic.ccgparser.$(CCGPARSER_IMPL): $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.weight.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/constituent.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/cfg.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.pos.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o
 	$(MKDIR) $(LIBS_DIR)
-	$(CXX) -shared -o $(LIBS_DIR)/libgeneric.ccg.$(GENERIC_CCG_PARSER).so $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.weight.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/constituent.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/cfg.o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.pos.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
+	$(CXX) -shared -o $(LIBS_DIR)/libgeneric.ccg.$(CCGPARSER_IMPL).so $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.weight.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/constituent.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/cfg.o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.pos.o $(OBJECT_LIBS)/reader.o $(OBJECT_LIBS)/writer.o $(OBJECT_LIBS)/options.o $(OBJECT_LIBS)/linguistics/lemma.o $(OBJECT_LIBS)/linguistics/conll.o $(OBJECT_LIBS)/learning/dbn.o 
 
-$(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/constituent.o: $(SRC_LIBS)/linguistics/constituent.cpp
-	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics
-	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -c $(SRC_LIBS)/linguistics/constituent.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/constituent.o
+$(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/constituent.o: $(SRC_LIBS)/linguistics/constituent.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics
+	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -c $(SRC_LIBS)/linguistics/constituent.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/constituent.o
 
-$(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/cfg.o: $(SRC_LIBS)/linguistics/cfg/generic.cpp
-	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics
-	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -c $(SRC_LIBS)/linguistics/cfg/generic.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/linguistics/cfg.o
+$(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/cfg.o: $(SRC_LIBS)/linguistics/cfg/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics
+	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -c $(SRC_LIBS)/linguistics/cfg/generic.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/linguistics/cfg.o
 
-$(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.pos.o: $(SRC_GENERIC)/pos/generic.cpp
-	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)
-	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/ccg -I$(SRC_COMMON)/ccg/implementations/$(GENERIC_CCG_PARSER) -c $(SRC_GENERIC)/pos/generic.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.pos.o
+$(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.pos.o: $(SRC_GENERIC)/pos/generic.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/ccg -I$(SRC_COMMON)/ccg/implementations/$(CCGPARSER_IMPL) -c $(SRC_GENERIC)/pos/generic.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.pos.o
 
-$(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.o: $(SRC_COMMON)/conparser/implementations/$(GENERIC_CCG_PARSER)/conparser.cpp
-	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)
-	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(GENERIC_CCG_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(GENERIC_CCG_PARSER)/conparser.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.o
+$(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.o: $(SRC_COMMON)/conparser/implementations/$(CCGPARSER_IMPL)/conparser.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(CCGPARSER_IMPL) -c $(SRC_COMMON)/conparser/implementations/$(CCGPARSER_IMPL)/conparser.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.o
 
-$(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.weight.o: $(SRC_COMMON)/conparser/implementations/$(GENERIC_CCG_PARSER)/weight.cpp
-	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)
-	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(GENERIC_CCG_PARSER) -c $(SRC_COMMON)/conparser/implementations/$(GENERIC_CCG_PARSER)/weight.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(GENERIC_CCG_PARSER)/generic.ccg.weight.o
+$(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.weight.o: $(SRC_COMMON)/conparser/implementations/$(CCGPARSER_IMPL)/weight.cpp
+	$(MKDIR) $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)
+	$(CXX) $(CXXFLAGS) -DFRAGMENTED_TREE -DNO_TEMP_CONSTITUENT -DGENERIC_CONLABEL_SIZE=12 -DTARGET_LANGUAGE=generic -I$(SRC_GENERIC) -I$(SRC_COMMON)/conparser -I$(SRC_COMMON)/conparser/implementations/$(CCGPARSER_IMPL) -c $(SRC_COMMON)/conparser/implementations/$(CCGPARSER_IMPL)/weight.cpp -o $(OBJECT_GENERIC)/ccg/implementations/$(CCGPARSER_IMPL)/generic.ccg.weight.o
 

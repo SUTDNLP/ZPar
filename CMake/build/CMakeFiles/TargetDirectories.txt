@@ -1,1 +1,2 @@
-/home/ljm/project/zpar/CMake/build/CMakeFiles/english.conparser.converter.dir
+/home/ljm/project/zpar/CMake/build/CMakeFiles/generic.postagger.tagger.dir
+/home/ljm/project/zpar/CMake/build/CMakeFiles/generic.postagger.train.dir
