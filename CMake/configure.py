@@ -97,7 +97,7 @@ def check(l):
 	if len(l) != 2:
 		return False
 	if l[0] == "english":
-		if not l[1] in ["postagger", "conparser", "depparser", "deplabeler", "posdepparser", "converter"]:
+		if not l[1] in ["tokenizer", "postagger", "conparser", "depparser", "deplabeler", "posdepparser", "converter"]:
 			return False
 	if l[0] == "chinese":
 		if not l[1] in ["segmentor", "postagger", "conparser", "depparser", "deplabeler", "posdepparser"]:
@@ -185,7 +185,13 @@ out.write("include_directories (${SOURCE_DIR} ${SOURCE_DIR}/include)\n")
 out.write("include_directories (${SOURCE_DIR}/"+sys.argv[1]+")\n")
 
 if sys.argv[1] == "english":
-	if sys.argv[2] == "postagger":
+	if sys.argv[2] == "tokenizer":
+		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
+		out.write("add_executable (tokenizer\n")
+		out.write("${SOURCE_DIR}/english/tokenizer/tokenizer.cpp\n")
+		out.write(")\n")
+
+	elif sys.argv[2] == "postagger":
 		out.write('set (CMAKE_CXX_FLAGS "-std=c++11 -g -w -W -O3 -DNDEBUG -DTARGET_LANGUAGE='+sys.argv[1]+'")\n')
 		out.write("include_directories (${SOURCE_DIR}/common/tagger)\n")
 		out.write("include_directories (${SOURCE_DIR}/common/tagger/implementations/"+ENGLISH_TAGGER_IMPL+")\n")
