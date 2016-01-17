@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <fstream>
 using namespace std;
 
 class Node {
@@ -430,11 +431,19 @@ void p15(Node *h){
 		p = p->next;
 	}
 }
-int main(){
+int main(int argc, char** argv){
 	string a;
 	Node* h;
 	char c[20];
-	while(getline(cin,a)){
+	istream *in;
+	if(argc >= 2) in = new ifstream(argv[1]);
+	else in = &std::cin;
+
+	ostream *out;
+	if(argc >= 3) out = new ofstream(argv[2]);
+	else out = &std::cout;
+
+	while(getline(*in,a)){
 		h = new Node();
 		init_List(h,a);
 		p1(h);
@@ -483,16 +492,16 @@ int main(){
 //		cout<<"ok"<<endl;
 		Node *p = h->next;
 		while(p){
-			if(p->c == '(') cout<<"-LRB-";
-			else if(p->c == ')') cout<<"-RRB-";
-			else if(p->c == '[') cout<<"-LSB-";
-			else if(p->c == ']') cout<<"-RSB-";
-			else if(p->c == '{') cout<<"-LCB-";
-			else if(p->c == '}') cout<<"-RCB-";
-			else cout<<p->c;
+			if(p->c == '(') (*out)<<"-LRB-";
+			else if(p->c == ')') (*out)<<"-RRB-";
+			else if(p->c == '[') (*out)<<"-LSB-";
+			else if(p->c == ']') (*out)<<"-RSB-";
+			else if(p->c == '{') (*out)<<"-LCB-";
+			else if(p->c == '}') (*out)<<"-RCB-";
+			else (*out)<<p->c;
 			p = p->next;
 		}
-		cout<<endl;
+		(*out)<<endl;
 		clean_List(h);
 	}
 	return 0;
