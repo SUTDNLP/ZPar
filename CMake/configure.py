@@ -222,12 +222,7 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/weight.cpp\n")
-		if ENGLISH_CONPARSER_IMPL == "jiangming_phrase":
-			out.write("${SOURCE_DIR}/common/conparser/main_phrase.cpp\n")
-		elif ENGLISH_CONPARSER_IMPL == "jiangming_joint" or ENGLISH_CONPARSER_IMPL == "jiangming_base_joint":
-			out.write("${SOURCE_DIR}/common/conparser/main_joint.cpp\n")
-		else:
-			out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"conparser",libs)
 
@@ -237,12 +232,7 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/weight.cpp\n")
-		if ENGLISH_CONPARSER_IMPL == "jiangming_phrase":
-			out.write("${SOURCE_DIR}/common/conparser/train_phrase.cpp\n")
-		elif ENGLISH_CONPARSER_IMPL == "jiangming_joint" or ENGLISH_CONPARSER_IMPL == "jiangming_base_joint":
-			out.write("${SOURCE_DIR}/common/conparser/train_joint.cpp\n")
-		else:
-			out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
+		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"train",libs)
 	elif sys.argv[2] == "depparser":
