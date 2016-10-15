@@ -222,7 +222,10 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/weight.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
+		if ENGLISH_CONPARSER_IMPL == "lookahead":
+			out.write("${SOURCE_DIR}/common/conparser/main_boundary.cpp\n")
+		else:
+			out.write("${SOURCE_DIR}/common/conparser/main.cpp\n")
 		out.write(")\n")
 		add_libs(out,"conparser",libs)
 
@@ -232,7 +235,10 @@ if sys.argv[1] == "english":
 		out.write("${SOURCE_DIR}/libs/linguistics/constituent.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/conparser.cpp\n")
 		out.write("${SOURCE_DIR}/common/conparser/implementations/"+ENGLISH_CONPARSER_IMPL+"/weight.cpp\n")
-		out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
+		if ENGLISH_CONPARSER_IMPL == "lookahead":
+			out.write("${SOURCE_DIR}/common/conparser/train_boundary.cpp\n")
+		else:
+			out.write("${SOURCE_DIR}/common/conparser/train.cpp\n")
 		out.write(")\n")
 		add_libs(out,"train",libs)
 	elif sys.argv[2] == "depparser":
